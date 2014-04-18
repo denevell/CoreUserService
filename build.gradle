@@ -51,5 +51,5 @@ war {
 if(project.property('prod')=='true') {
 	sourceSets.main.resources.srcDirs 'src/main/resources', 'src/prod/resources'
 } else {
-	war.dependsOn migrate
+	//war.dependsOn migrate -- using the db in natch-jsp atm
 }
