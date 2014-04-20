@@ -1,3 +1,5 @@
+*.war
+*.jar
 build
 .settings
 .project
