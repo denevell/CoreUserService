@@ -29,16 +29,6 @@ public class ManifestVars implements ServletContextListener {
 			Logger.getLogger(getClass()).info(inputStream);
 			Manifest manifest = new Manifest(inputStream);
 			sMainManifestAttributes = manifest.getMainAttributes();
-
-			// Set production variable
-			String isProduction = (String) sMainManifestAttributes.getValue("ISPROD").trim();
-			if(isProduction.equals("TRUE")) {
-				Logger.getLogger(getClass()).info("Setting prod as true");
-				sInProduction = true;
-			} else {
-				Logger.getLogger(getClass()).info("Setting prod as false");
-				sInProduction = false;
-			}
 		} catch (Exception e) {
 			Logger.getLogger(getClass()).error("Coulnd't read manifest entries. Bailing.", e);
 			throw new RuntimeException(e);
@@ -57,11 +47,5 @@ public class ManifestVars implements ServletContextListener {
 	public static String getValue(String name) {
 		return sMainManifestAttributes.getValue(name).trim();
 	}
-	
-	public static boolean isInProduction() {
-		Logger.getLogger(ManifestVars.class).info(sMainManifestAttributes.entrySet());
-		return sInProduction;
-	}
-	
 
 }

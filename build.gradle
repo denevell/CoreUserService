@@ -26,6 +26,12 @@ dependencies {
     testCompile 'junit:junit:4.11'
 }
 
+task cleanWars() << {
+        ["rm", "CoreUserService-ForAutomatedTests.war"].execute()
+        ["rm", "CoreUserService-Production.war"].execute()
+}
+clean.dependsOn = [cleanWars]
+
 def migrationScript(connStr) {
        def cmdstr = 'go run '+file('.')+'/db_migration.go ' + connStr
        def cmd = cmdstr.execute()
@@ -43,13 +49,15 @@ task migrate() << {
 	migrationScript(connStr)
 }
 
+
 war {
 	destinationDir = new File(".")
 	classifier = 'ForAutomatedTests'	
 }
 
-if(project.property('prod')=='true') {
+if(project.hasProperty('PRODUCTION')) {
 	sourceSets.main.resources.srcDirs 'src/main/resources', 'src/prod/resources'
-} else {
-	//war.dependsOn migrate -- using the db in natch-jsp atm
-}
+	war {
+		classifier = 'Production'	
+	}
+} 
