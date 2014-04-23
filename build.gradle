@@ -26,6 +26,14 @@ dependencies {
     testCompile 'junit:junit:4.11'
 }
 
+test {  
+        testLogging.events = ['failed','passed']
+        testLogging.showStandardStreams = true
+        testLogging.showCauses = true
+        testLogging.showExceptions = true
+        testLogging.showStackTraces = true
+}
+
 task cleanWars() << {
         ["rm", "CoreUserService-ForAutomatedTests.war"].execute()
         ["rm", "CoreUserService-Production.war"].execute()

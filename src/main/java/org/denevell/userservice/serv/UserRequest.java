@@ -12,7 +12,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
-import org.apache.log4j.Logger;
 import org.denevell.natch.io.users.User;
 import org.denevell.userservice.model.entities.UserEntity;
 import org.denevell.userservice.model.interfaces.UserGetLoggedInModel;
@@ -30,9 +29,7 @@ public class UserRequest {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public User listUsers(@HeaderParam("AuthKey") String authKey) throws IOException {
-		Logger.getLogger(getClass()).info("AuthKey: " + authKey);
 		UserEntity userEntity = mUserLogggedInModel.get(authKey);
-		Logger.getLogger(getClass()).info("UserEntity: " + userEntity);
 		User u = new User(userEntity.getUsername(), userEntity.isAdmin());
 		u.setResetPasswordRequest(userEntity.isPasswordResetRequest());
 		u.setRecoveryEmail(userEntity.getRecoveryEmail());

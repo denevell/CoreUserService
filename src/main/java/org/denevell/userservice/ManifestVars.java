@@ -16,7 +16,6 @@ import org.apache.log4j.Logger;
  */
 public class ManifestVars implements ServletContextListener {
 
-	private static boolean sInProduction;
 	private static Attributes sMainManifestAttributes;
 
 	/**

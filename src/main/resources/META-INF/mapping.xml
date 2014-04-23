@@ -5,21 +5,6 @@
 http://java.sun.com/xml/ns/persistence/orm_2_0.xsd"
     version="2.0">
 
-    <entity class="org.denevell.userservice.ExampleEntity"> 
-       <table name="example" />
-	   <named-query name="list">
-	       <query>select p from ExampleEntity p</query>
-	   </named-query>       
-       <attributes>
-            <id name="id">
-	           <generated-value strategy="auto" />
-            </id>
-            <basic name="talky">
-	           <column name="talky" nullable="false"/>
-            </basic>
-       </attributes>
-    </entity>
-    
     <entity class="org.denevell.userservice.model.entities.UserEntity"> 
        <table name="UserEntity" />
 	   <named-query name="findWithUsernamePassword">
