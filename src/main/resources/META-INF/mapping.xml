@@ -23,9 +23,12 @@ http://java.sun.com/xml/ns/persistence/orm_2_0.xsd"
 	       <query>select u from UserEntity u where u.username=:username</query>
 	   </named-query>       
        <attributes>
-            <id name="username">
-	           <column name="username" nullable="false" length="50" />
+            <id name="id">
+	           <column name="id" nullable="false" />
             </id>
+            <basic name="username">
+	           <column name="username" nullable="false" length="50" />
+            </basic>
             <basic name="admin">
 	           <column name="admin" nullable="false" />
             </basic>

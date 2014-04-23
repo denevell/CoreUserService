@@ -15,6 +15,7 @@ public class UserEntity {
 	public static final String NAMED_QUERY_PARAM_USERNAME = "username";
 	public static final String NAMED_QUERY_FIND_BY_RECOVERY_EMAIL = "findByEmail";
 	
+	private long id;
 	private String username;
 	private String password;
 	private String recoveryEmail;
@@ -90,6 +91,14 @@ public class UserEntity {
 
 	public void setRecoveryEmail(String recoveryEmail) {
 		this.recoveryEmail = recoveryEmail;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 }
