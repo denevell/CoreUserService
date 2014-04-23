@@ -24,7 +24,7 @@ http://java.sun.com/xml/ns/persistence/orm_2_0.xsd"
 	   </named-query>       
        <attributes>
             <id name="id">
-	           <column name="id" nullable="false" />
+	           <generated-value strategy="auto" />
             </id>
             <basic name="username">
 	           <column name="username" nullable="false" length="50" />
