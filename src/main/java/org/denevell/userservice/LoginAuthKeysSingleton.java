@@ -23,7 +23,7 @@ public class LoginAuthKeysSingleton {
 		return sInstance;
 	}
 
-	public String generate(UserEntity user) {
+	public String generateAndStore(UserEntity user) {
 		if(user==null || user.getUsername()==null || user.getUsername().trim().length()==0) {
 			return null;
 		}

@@ -35,7 +35,7 @@ public class ChangePasswordRequest {
 	public void changePassword (
 			@Valid final ChangePasswordInput changePass,
 			@HeaderParam("AuthKey") String authKey) throws Exception {
-		final UserEntity userEntity = mUserLogggedInModel.get(authKey);
+		UserEntity userEntity = mUserLogggedInModel.get(authKey);
 		if(userEntity==null) {
 			mResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED);
 			return;

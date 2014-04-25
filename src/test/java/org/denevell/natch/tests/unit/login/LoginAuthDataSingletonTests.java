@@ -27,7 +27,7 @@ public class LoginAuthDataSingletonTests {
 		UserEntity userEntity = new UserEntity("username", "password");
 		
 		// Act
-		String authKey = authKeyGenerator.generate(userEntity);
+		String authKey = authKeyGenerator.generateAndStore(userEntity);
 		
 		// Assert
 		assertTrue(authKey.length()>5);
@@ -38,7 +38,7 @@ public class LoginAuthDataSingletonTests {
 		// Arrange
 		
 		// Act
-		String authKey = authKeyGenerator.generate(null);
+		String authKey = authKeyGenerator.generateAndStore(null);
 		
 		// Assert
 		assertNull(authKey);
@@ -50,8 +50,8 @@ public class LoginAuthDataSingletonTests {
 		UserEntity userEntity = new UserEntity("username", "password");
 		
 		// Act
-		String authKey = authKeyGenerator.generate(userEntity);
-		String authKey1 = authKeyGenerator.generate(userEntity);
+		String authKey = authKeyGenerator.generateAndStore(userEntity);
+		String authKey1 = authKeyGenerator.generateAndStore(userEntity);
 		
 		// Assert
 		assertFalse(authKey.equals(authKey1));
@@ -61,8 +61,8 @@ public class LoginAuthDataSingletonTests {
 	public void shouldntLoginWithOldAuthKey() {
 		// Arrange
 		UserEntity userEntity = new UserEntity();
-		String authKey = authKeyGenerator.generate(userEntity);
-		authKeyGenerator.generate(userEntity);
+		String authKey = authKeyGenerator.generateAndStore(userEntity);
+		authKeyGenerator.generateAndStore(userEntity);
 		
 		// Act
 		UserEntity username = authKeyGenerator.retrieveUserEntity(authKey);
@@ -77,7 +77,7 @@ public class LoginAuthDataSingletonTests {
 		UserEntity userEntity = new UserEntity("username", "password");
 		
 		// Act
-		String authKey = authKeyGenerator.generate(userEntity);
+		String authKey = authKeyGenerator.generateAndStore(userEntity);
 		UserEntity retrievedUsername = authKeyGenerator.retrieveUserEntity(authKey);
 		
 		// Assert
@@ -101,7 +101,7 @@ public class LoginAuthDataSingletonTests {
 		UserEntity userEntity = new UserEntity("username", "password");
 		
 		// Act
-		String authKey = authKeyGenerator.generate(userEntity);
+		String authKey = authKeyGenerator.generateAndStore(userEntity);
 		authKeyGenerator = LoginAuthKeysSingleton.getInstance();
 		UserEntity retrievedUsername = authKeyGenerator.retrieveUserEntity(authKey);
 		
@@ -115,7 +115,7 @@ public class LoginAuthDataSingletonTests {
 		UserEntity userEntity = new UserEntity("username", "password");
 		
 		// Act
-		String key = authKeyGenerator.generate(userEntity);
+		String key = authKeyGenerator.generateAndStore(userEntity);
 		UserEntity retrievedUsername = authKeyGenerator.retrieveUserEntity(key);
 		authKeyGenerator.clearAllKeys();
 		UserEntity retrievedUsername1 = authKeyGenerator.retrieveUserEntity(key);
@@ -129,7 +129,7 @@ public class LoginAuthDataSingletonTests {
 	public void shouldRemoveAuthKey() {
 		// Arrange
 		UserEntity userEntity = new UserEntity("username", "password");
-		String authKey = authKeyGenerator.generate(userEntity);
+		String authKey = authKeyGenerator.generateAndStore(userEntity);
 		
 		// Act
 		UserEntity retrievedUsername = authKeyGenerator.retrieveUserEntity(authKey);

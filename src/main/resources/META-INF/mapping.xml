@@ -44,4 +44,21 @@ http://java.sun.com/xml/ns/persistence/orm_2_0.xsd"
        </attributes>
     </entity>    
     
+    <entity class="org.denevell.userservice.model.entities.UserLoggedInEntity"> 
+       <table name="users_loggedin" />
+	   <named-query name="findByAuthKey">
+	       <query>select u from UserLoggedInEntity u where u.authKey=:auth_key</query>
+	   </named-query>       
+	   <named-query name="findByUserId">
+	       <query>select u from UserLoggedInEntity u where u.userId=:user_id</query>
+	   </named-query>       
+       <attributes>
+            <id name="authKey">
+	           <column name="auth_key" nullable="false" length="500" />
+	        </id>
+            <basic name="userId">
+	           <column name="user_id" nullable="false"/>
+            </basic>
+       </attributes>
+    </entity>        
 </entity-mappings>
