@@ -18,6 +18,7 @@ import org.denevell.natch.io.users.UserList;
 import org.denevell.userservice.model.entities.UserEntity;
 import org.denevell.userservice.model.interfaces.UserGetLoggedInModel;
 import org.denevell.userservice.model.interfaces.UsersListModel;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Path("user/list")
 public class UsersListRequest {
@@ -32,7 +33,7 @@ public class UsersListRequest {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public UserList listUsers(@HeaderParam("AuthKey") String authKey) throws IOException {
+	public UserList listUsers(@HeaderParam("AuthKey") @NotBlank String authKey) throws IOException {
 		UserEntity userEntity = mUserLogggedInModel.get(authKey);
 		if (!userEntity.isAdmin()) {
 			mResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED);

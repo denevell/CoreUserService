@@ -30,6 +30,10 @@ public class UserRequest {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public User listUsers(@HeaderParam("AuthKey") String authKey) throws IOException {
 		UserEntity userEntity = mUserLogggedInModel.get(authKey);
+		if(userEntity==null) {
+			mResponse.sendError(HttpServletResponse.SC_NOT_FOUND);
+			return null;
+		}
 		User u = new User(userEntity.getUsername(), userEntity.isAdmin());
 		u.setResetPasswordRequest(userEntity.isPasswordResetRequest());
 		u.setRecoveryEmail(userEntity.getRecoveryEmail());
