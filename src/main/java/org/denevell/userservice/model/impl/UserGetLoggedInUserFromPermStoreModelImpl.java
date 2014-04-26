@@ -6,11 +6,6 @@ import org.denevell.userservice.model.entities.UserLoggedInEntity;
 import org.denevell.userservice.model.interfaces.UserGetLoggedInUserFromPermStoreModel;
 import org.jvnet.hk2.annotations.Service;
 
-/**
- * User case 1:
- * 
- * The AuthKey and UserId are added to the database, and deleted first if already exists
- */
 @Service
 public class UserGetLoggedInUserFromPermStoreModelImpl implements UserGetLoggedInUserFromPermStoreModel {
 	

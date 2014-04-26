@@ -4,7 +4,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
 import java.util.UUID;
 
 import org.denevell.userservice.model.entities.UserEntity;
@@ -26,14 +25,6 @@ public class LoginAuthKeysSingleton {
 	public String generateAndStore(UserEntity user) {
 		if(user==null || user.getUsername()==null || user.getUsername().trim().length()==0) {
 			return null;
-		}
-		// Remove entry for this value if exists already
-		Set<Entry<String, UserEntity>> entries = mLoginKeys.entrySet();
-		for (Entry<String, UserEntity> entry : entries) {
-			if(entry.getValue().getUsername().equals(user.getUsername())) {
-				mLoginKeys.remove(entry.getKey());
-				break;
-			}
 		}
 		String key = UUID.randomUUID().toString();
 		mLoginKeys.put(key, user);

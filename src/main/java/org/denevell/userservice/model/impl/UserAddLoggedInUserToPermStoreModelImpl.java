@@ -22,8 +22,8 @@ public class UserAddLoggedInUserToPermStoreModelImpl implements UserAddLoggedInU
 		instance.setUserId(userId);
 		mModel
 			.startTransaction()
-			.namedQuery(UserLoggedInEntity.NAMED_QUERY_FIND_BY_ID)
-			.queryParam("user_id", userId)
+			.namedQuery(UserLoggedInEntity.NAMED_QUERY_FIND_BY_AUTH_KEY)
+			.queryParam("auth_key", instance.getAuthKey())
 			.addAndDeleteIfExistsPreviously(instance, UserLoggedInEntity.class);
 		mModel.commitAndCloseEntityManager();
 	}
