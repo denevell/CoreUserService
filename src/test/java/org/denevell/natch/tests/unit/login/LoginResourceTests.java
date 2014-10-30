@@ -6,9 +6,9 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 
-import org.denevell.natch.io.users.LoginResourceInput;
 import org.denevell.natch.io.users.LoginResourceReturnData;
 import org.denevell.userservice.serv.LoginRequest;
+import org.denevell.userservice.serv.LoginRequest.LoginResourceInput;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;

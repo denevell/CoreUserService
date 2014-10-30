@@ -4,9 +4,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import org.denevell.natch.io.users.RegisterResourceInput;
 import org.denevell.natch.io.users.RegisterResourceReturnData;
 import org.denevell.userservice.serv.RegisterRequest;
+import org.denevell.userservice.serv.RegisterRequest.RegisterResourceInput;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;

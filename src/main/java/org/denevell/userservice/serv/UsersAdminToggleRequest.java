@@ -13,7 +13,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
-import org.denevell.natch.io.base.SuccessOrError;
+import org.denevell.natch.io.users.SuccessOrError;
 import org.denevell.userservice.model.entities.UserEntity;
 import org.denevell.userservice.model.interfaces.UserAdminToggleModel;
 import org.denevell.userservice.model.interfaces.UserGetLoggedInModel;

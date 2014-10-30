@@ -12,11 +12,13 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
+import javax.xml.bind.annotation.XmlRootElement;
 
-import org.denevell.natch.io.users.ChangePasswordInput;
 import org.denevell.userservice.model.entities.UserEntity;
 import org.denevell.userservice.model.interfaces.UserChangePasswordModel;
 import org.denevell.userservice.model.interfaces.UserGetLoggedInModel;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Path("user/password")
 public class ChangePasswordRequest {
@@ -59,4 +61,18 @@ public class ChangePasswordRequest {
 		int res = mUserChangePassword.changePassword(username, changePass.getPassword());
 		if(res==UserChangePasswordModel.NOT_FOUND) mResponse.sendError(HttpServletResponse.SC_NOT_FOUND); 
 	}
+	
+	@XmlRootElement
+	public static class ChangePasswordInput {
+	  @NotEmpty @NotBlank private String password;
+
+	  public String getPassword() {
+	    return password;
+	  }
+
+	  public void setPassword(String password) {
+	    this.password = password;
+	  }
+	}
+	
 }

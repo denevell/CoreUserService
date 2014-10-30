@@ -11,11 +11,12 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.xml.bind.annotation.XmlRootElement;
 
-import org.denevell.natch.io.users.LoginResourceInput;
 import org.denevell.natch.io.users.LoginResourceReturnData;
 import org.denevell.userservice.model.interfaces.UserLoginModel;
 import org.denevell.userservice.model.interfaces.UserLoginModel.UserEntityAndAuthKey;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Path("user/login")
 public class LoginRequest {
@@ -41,6 +42,37 @@ public class LoginRequest {
 			returnResult.setAuthKey(res.authKey);
 			return returnResult;
 		} 
+	}
+	
+	@XmlRootElement
+	public static class LoginResourceInput {
+	  
+	  private @NotBlank String username;
+	  private @NotBlank String password;
+
+	  public LoginResourceInput(String username, String password) {
+	    this.username = username;
+	    this.password = password;
+	  }
+	  
+	  public LoginResourceInput() {
+	  }
+
+	  public String getUsername() {
+	    return username;
+	  }
+
+	  public void setUsername(String username) {
+	    this.username = username;
+	  }
+
+	  public String getPassword() {
+	    return password;
+	  }
+
+	  public void setPassword(String password) {
+	    this.password = password;
+	  }
 	}
 
 }
