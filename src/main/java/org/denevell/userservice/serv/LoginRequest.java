@@ -25,9 +25,6 @@ public class LoginRequest {
   @Inject
   LoginModel mModel;
 
-  public LoginRequest() {
-  }
-
   @POST
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)

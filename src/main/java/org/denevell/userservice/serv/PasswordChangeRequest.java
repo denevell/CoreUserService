@@ -29,9 +29,6 @@ public class PasswordChangeRequest {
     @Inject PasswordChangeModel mUserChangePassword;
 	@Inject UserLoggedInModel mUserLogggedInModel;
 	
-	public PasswordChangeRequest() {
-	}
-	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void changePassword (
