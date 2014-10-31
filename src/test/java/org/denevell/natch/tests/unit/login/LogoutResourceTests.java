@@ -7,9 +7,9 @@ import static org.mockito.Mockito.when;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.denevell.natch.io.users.LogoutResourceReturnData;
-import org.denevell.userservice.model.model.LogoutModel;
+import org.denevell.userservice.model.LogoutModel;
 import org.denevell.userservice.serv.LogoutRequest;
+import org.denevell.userservice.serv.LogoutRequest.LogoutResourceReturnData;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -14,9 +14,9 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import org.denevell.userservice.model.model.PasswordChangeModel;
-import org.denevell.userservice.model.model.UserEntity;
-import org.denevell.userservice.model.model.UserLoggedInModel;
+import org.denevell.userservice.model.PasswordChangeModel;
+import org.denevell.userservice.model.UserEntity;
+import org.denevell.userservice.model.UserLoggedInModel;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 

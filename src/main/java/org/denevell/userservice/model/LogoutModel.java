@@ -1,4 +1,4 @@
-package org.denevell.userservice.model.model;
+package org.denevell.userservice.model;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;

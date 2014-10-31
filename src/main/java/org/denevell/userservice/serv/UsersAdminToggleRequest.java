@@ -13,10 +13,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
-import org.denevell.natch.io.users.SuccessOrError;
-import org.denevell.userservice.model.model.AdminToggleModel;
-import org.denevell.userservice.model.model.UserEntity;
-import org.denevell.userservice.model.model.UserLoggedInModel;
+import org.denevell.userservice.model.AdminToggleModel;
+import org.denevell.userservice.model.UserEntity;
+import org.denevell.userservice.model.UserLoggedInModel;
 
 
 @Path("user/admin/toggle")
@@ -25,9 +24,6 @@ public class UsersAdminToggleRequest {
 	@Context HttpServletResponse mResponse;
 	@Inject AdminToggleModel mModel;
 	@Inject UserLoggedInModel mUserLogggedInModel;
-	
-	public UsersAdminToggleRequest() {
-	}
 	
 	@POST
 	@Path("/{userId}")

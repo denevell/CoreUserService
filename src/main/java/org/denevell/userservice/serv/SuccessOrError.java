@@ -1,4 +1,4 @@
-package org.denevell.natch.io.users;
+package org.denevell.userservice.serv;
 
 import javax.xml.bind.annotation.XmlRootElement;
 

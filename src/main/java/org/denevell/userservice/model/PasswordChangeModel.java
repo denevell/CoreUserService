@@ -1,4 +1,4 @@
-package org.denevell.userservice.model.model;
+package org.denevell.userservice.model;
 
 import org.denevell.jrappy.Jrappy;
 import org.denevell.jrappy.Jrappy.RunnableWith;

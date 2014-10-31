@@ -12,18 +12,20 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import org.denevell.natch.io.users.RegisterResourceReturnData;
-import org.denevell.userservice.model.model.AddModel;
-import org.denevell.userservice.model.model.UserEntity;
+import org.denevell.userservice.model.AddModel;
+import org.denevell.userservice.model.UserEntity;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Path("user")
 public class RegisterRequest {
 
-  @Context UriInfo info;
-  @Context ServletContext context;
-  @Inject AddModel mUserAddModel;
+  @Context
+  UriInfo info;
+  @Context
+  ServletContext context;
+  @Inject
+  AddModel mUserAddModel;
 
   public RegisterRequest() {
   }
@@ -98,7 +100,10 @@ public class RegisterRequest {
     public void setRecoveryEmail(String recoveryEmail) {
       this.recoveryEmail = recoveryEmail;
     }
+  }
 
+  @XmlRootElement
+  public static class RegisterResourceReturnData extends SuccessOrError {
   }
 
 }
