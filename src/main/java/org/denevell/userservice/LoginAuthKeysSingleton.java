@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.UUID;
 
-import org.denevell.userservice.model.entities.UserEntity;
+import org.denevell.userservice.model.model.UserEntity;
 
 public class LoginAuthKeysSingleton {
 	private static LoginAuthKeysSingleton sInstance;

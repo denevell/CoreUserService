@@ -11,14 +11,14 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
 
 import org.denevell.natch.io.users.LogoutResourceReturnData;
-import org.denevell.userservice.model.interfaces.UserLogoutModel;
+import org.denevell.userservice.model.model.LogoutModel;
 
 @Path("user/logout")
 public class LogoutRequest {
 	
 	@Context UriInfo info;
 	@Context HttpServletResponse mResponse;
-	@Inject UserLogoutModel mUserLogoutModel;
+	@Inject LogoutModel mUserLogoutModel;
 	
 	public LogoutRequest() {
 	}
@@ -26,7 +26,7 @@ public class LogoutRequest {
 	/**
 	 * For DI testing.
 	 */
-	public LogoutRequest(UserLogoutModel model, HttpServletResponse response) {
+	public LogoutRequest(LogoutModel model, HttpServletResponse response) {
 		mUserLogoutModel = model;
 		mResponse = response;
 	}
@@ -36,7 +36,7 @@ public class LogoutRequest {
 	public LogoutResourceReturnData logout(@HeaderParam("AuthKey") String authKey) throws Exception {
 		LogoutResourceReturnData returnResult = new LogoutResourceReturnData();
 		int logout = mUserLogoutModel.logout(authKey);
-		if(logout==UserLogoutModel.SUCCESS) {
+		if(logout==LogoutModel.SUCCESS) {
 			returnResult.setSuccessful(true);
 		} else {
 			returnResult.setSuccessful(false);

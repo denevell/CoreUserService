@@ -14,15 +14,15 @@ import javax.ws.rs.core.MediaType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.denevell.natch.io.users.LoginResourceReturnData;
-import org.denevell.userservice.model.interfaces.UserLoginModel;
-import org.denevell.userservice.model.interfaces.UserLoginModel.UserEntityAndAuthKey;
+import org.denevell.userservice.model.model.LoginModel;
+import org.denevell.userservice.model.model.LoginModel.UserEntityAndAuthKey;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Path("user/login")
 public class LoginRequest {
 	
 	@Context HttpServletResponse mResponse;
-	@Inject UserLoginModel mModel;
+	@Inject LoginModel mModel;
 	
 	public LoginRequest() {
 	}

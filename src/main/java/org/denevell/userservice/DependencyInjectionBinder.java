@@ -1,45 +1,45 @@
 package org.denevell.userservice;
 
-import org.denevell.userservice.model.impl.UserAddLoggedInUserToPermStoreModelImpl;
-import org.denevell.userservice.model.impl.UserAddModelImpl;
-import org.denevell.userservice.model.impl.UserAdminToggleModelImpl;
-import org.denevell.userservice.model.impl.UserChangePasswordModelImpl;
-import org.denevell.userservice.model.impl.UserGetLoggedInModelImpl;
-import org.denevell.userservice.model.impl.UserGetLoggedInUserFromPermStoreModelImpl;
-import org.denevell.userservice.model.impl.UserLoginModelImpl;
-import org.denevell.userservice.model.impl.UserLogoutModelImpl;
-import org.denevell.userservice.model.impl.UserPasswordResetDeleteModelImpl;
-import org.denevell.userservice.model.impl.UserPasswordResetRequestModelImpl;
-import org.denevell.userservice.model.impl.UserRemoveLoggedInUserFromPermStoreModelImpl;
-import org.denevell.userservice.model.impl.UsersListModelImpl;
-import org.denevell.userservice.model.interfaces.UserAddLoggedInUserToPermStoreModel;
-import org.denevell.userservice.model.interfaces.UserAddModel;
-import org.denevell.userservice.model.interfaces.UserAdminToggleModel;
-import org.denevell.userservice.model.interfaces.UserChangePasswordModel;
-import org.denevell.userservice.model.interfaces.UserGetLoggedInModel;
-import org.denevell.userservice.model.interfaces.UserGetLoggedInUserFromPermStoreModel;
-import org.denevell.userservice.model.interfaces.UserLoginModel;
-import org.denevell.userservice.model.interfaces.UserLogoutModel;
-import org.denevell.userservice.model.interfaces.UserPasswordResetDeleteModel;
-import org.denevell.userservice.model.interfaces.UserPasswordResetRequestModel;
-import org.denevell.userservice.model.interfaces.UserRemoveLoggedInUserFromPermStoreModel;
-import org.denevell.userservice.model.interfaces.UsersListModel;
+import org.denevell.userservice.model.model.AddLoggedInUserToPermStoreModel;
+import org.denevell.userservice.model.model.AddLoggedInUserToPermStoreModel.UserAddLoggedInUserToPermStoreModelImpl;
+import org.denevell.userservice.model.model.AddModel;
+import org.denevell.userservice.model.model.AddModel.UserAddModelImpl;
+import org.denevell.userservice.model.model.AdminToggleModel;
+import org.denevell.userservice.model.model.AdminToggleModel.UserAdminToggleModelImpl;
+import org.denevell.userservice.model.model.PasswordChangeModel;
+import org.denevell.userservice.model.model.PasswordChangeModel.UserChangePasswordModelImpl;
+import org.denevell.userservice.model.model.UserLoggedInModel;
+import org.denevell.userservice.model.model.UserLoggedInModel.UserGetLoggedInModelImpl;
+import org.denevell.userservice.model.model.UserLoggedInUserFromPermStoreModel;
+import org.denevell.userservice.model.model.UserLoggedInUserFromPermStoreModel.UserGetLoggedInUserFromPermStoreModelImpl;
+import org.denevell.userservice.model.model.LoginModel;
+import org.denevell.userservice.model.model.LoginModel.UserLoginModelImpl;
+import org.denevell.userservice.model.model.LogoutModel;
+import org.denevell.userservice.model.model.LogoutModel.UserLogoutModelImpl;
+import org.denevell.userservice.model.model.PasswordResetDeleteModel;
+import org.denevell.userservice.model.model.PasswordResetDeleteModel.UserPasswordResetDeleteModelImpl;
+import org.denevell.userservice.model.model.PasswordResetRequestModel;
+import org.denevell.userservice.model.model.PasswordResetRequestModel.UserPasswordResetRequestModelImpl;
+import org.denevell.userservice.model.model.RemoveLoggedInUserFromPermStoreModel;
+import org.denevell.userservice.model.model.RemoveLoggedInUserFromPermStoreModel.UserRemoveLoggedInUserFromPermStoreModelImpl;
+import org.denevell.userservice.model.model.UsersModel;
+import org.denevell.userservice.model.model.UsersModel.UsersListModelImpl;
 import org.glassfish.hk2.utilities.binding.AbstractBinder;
 
 public class DependencyInjectionBinder extends AbstractBinder {
 	@Override
 	protected void configure() {
-		bind(UserAddModelImpl.class).to(UserAddModel.class);
-		bind(UserAdminToggleModelImpl.class).to(UserAdminToggleModel.class);
-		bind(UserChangePasswordModelImpl.class).to(UserChangePasswordModel.class);
-		bind(UserLoginModelImpl.class).to(UserLoginModel.class);
-		bind(UserLogoutModelImpl.class).to(UserLogoutModel.class);
-		bind(UserPasswordResetRequestModelImpl.class).to(UserPasswordResetRequestModel.class);
-		bind(UserPasswordResetDeleteModelImpl.class).to(UserPasswordResetDeleteModel.class);
-		bind(UsersListModelImpl.class).to(UsersListModel.class);
-		bind(UserGetLoggedInModelImpl.class).to(UserGetLoggedInModel.class);
-		bind(UserAddLoggedInUserToPermStoreModelImpl.class).to(UserAddLoggedInUserToPermStoreModel.class);
-		bind(UserGetLoggedInUserFromPermStoreModelImpl.class).to(UserGetLoggedInUserFromPermStoreModel.class);
-		bind(UserRemoveLoggedInUserFromPermStoreModelImpl.class).to(UserRemoveLoggedInUserFromPermStoreModel.class);
+		bind(UserAddModelImpl.class).to(AddModel.class);
+		bind(UserAdminToggleModelImpl.class).to(AdminToggleModel.class);
+		bind(UserChangePasswordModelImpl.class).to(PasswordChangeModel.class);
+		bind(UserLoginModelImpl.class).to(LoginModel.class);
+		bind(UserLogoutModelImpl.class).to(LogoutModel.class);
+		bind(UserPasswordResetRequestModelImpl.class).to(PasswordResetRequestModel.class);
+		bind(UserPasswordResetDeleteModelImpl.class).to(PasswordResetDeleteModel.class);
+		bind(UsersListModelImpl.class).to(UsersModel.class);
+		bind(UserGetLoggedInModelImpl.class).to(UserLoggedInModel.class);
+		bind(UserAddLoggedInUserToPermStoreModelImpl.class).to(AddLoggedInUserToPermStoreModel.class);
+		bind(UserGetLoggedInUserFromPermStoreModelImpl.class).to(UserLoggedInUserFromPermStoreModel.class);
+		bind(UserRemoveLoggedInUserFromPermStoreModelImpl.class).to(RemoveLoggedInUserFromPermStoreModel.class);
 	}
 }

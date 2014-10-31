@@ -15,17 +15,17 @@ import javax.ws.rs.core.MediaType;
 
 import org.denevell.natch.io.users.User;
 import org.denevell.natch.io.users.UserList;
-import org.denevell.userservice.model.entities.UserEntity;
-import org.denevell.userservice.model.interfaces.UserGetLoggedInModel;
-import org.denevell.userservice.model.interfaces.UsersListModel;
+import org.denevell.userservice.model.model.UserEntity;
+import org.denevell.userservice.model.model.UserLoggedInModel;
+import org.denevell.userservice.model.model.UsersModel;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Path("user/list")
 public class UsersListRequest {
 
 	@Context HttpServletResponse mResponse;
-	@Inject UsersListModel mUserList;
-	@Inject UserGetLoggedInModel mUserLogggedInModel;
+	@Inject UsersModel mUserList;
+	@Inject UserLoggedInModel mUserLogggedInModel;
 
 	public UsersListRequest() {
 	}

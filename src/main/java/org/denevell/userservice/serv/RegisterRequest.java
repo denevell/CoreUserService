@@ -13,8 +13,8 @@ import javax.ws.rs.core.UriInfo;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.denevell.natch.io.users.RegisterResourceReturnData;
-import org.denevell.userservice.model.entities.UserEntity;
-import org.denevell.userservice.model.interfaces.UserAddModel;
+import org.denevell.userservice.model.model.AddModel;
+import org.denevell.userservice.model.model.UserEntity;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -23,7 +23,7 @@ public class RegisterRequest {
 
   @Context UriInfo info;
   @Context ServletContext context;
-  @Inject UserAddModel mUserAddModel;
+  @Inject AddModel mUserAddModel;
 
   public RegisterRequest() {
   }
@@ -36,11 +36,11 @@ public class RegisterRequest {
     RegisterResourceReturnData regReturnData = new RegisterResourceReturnData();
     UserEntity u = new UserEntity(registerInput);
     int added = mUserAddModel.add(u);
-    if (added == UserAddModel.EMAIL_ALREADY_EXISTS) {
+    if (added == AddModel.EMAIL_ALREADY_EXISTS) {
       regReturnData.setSuccessful(false);
       regReturnData.setError("Email already exists");
       return regReturnData;
-    } else if (added == UserAddModel.USER_ALREADY_EXISTS) {
+    } else if (added == AddModel.USER_ALREADY_EXISTS) {
       regReturnData.setSuccessful(false);
       regReturnData.setError("Username already exists");
     } else {

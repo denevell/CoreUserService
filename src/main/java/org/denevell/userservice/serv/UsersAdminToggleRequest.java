@@ -14,17 +14,17 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import org.denevell.natch.io.users.SuccessOrError;
-import org.denevell.userservice.model.entities.UserEntity;
-import org.denevell.userservice.model.interfaces.UserAdminToggleModel;
-import org.denevell.userservice.model.interfaces.UserGetLoggedInModel;
+import org.denevell.userservice.model.model.AdminToggleModel;
+import org.denevell.userservice.model.model.UserEntity;
+import org.denevell.userservice.model.model.UserLoggedInModel;
 
 
 @Path("user/admin/toggle")
 public class UsersAdminToggleRequest {
 	
 	@Context HttpServletResponse mResponse;
-	@Inject UserAdminToggleModel mModel;
-	@Inject UserGetLoggedInModel mUserLogggedInModel;
+	@Inject AdminToggleModel mModel;
+	@Inject UserLoggedInModel mUserLogggedInModel;
 	
 	public UsersAdminToggleRequest() {
 	}
@@ -42,7 +42,7 @@ public class UsersAdminToggleRequest {
 			return null;
 		} else {
 			int result = mModel.toggleAdmin(userId);
-			if(result==UserAdminToggleModel.CANT_FIND) {
+			if(result==AdminToggleModel.CANT_FIND) {
 				mResponse.sendError(HttpServletResponse.SC_NOT_FOUND);
 				return null;
 			} else {

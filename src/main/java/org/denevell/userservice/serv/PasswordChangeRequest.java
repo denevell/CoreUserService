@@ -14,22 +14,22 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import org.denevell.userservice.model.entities.UserEntity;
-import org.denevell.userservice.model.interfaces.UserChangePasswordModel;
-import org.denevell.userservice.model.interfaces.UserGetLoggedInModel;
+import org.denevell.userservice.model.model.PasswordChangeModel;
+import org.denevell.userservice.model.model.UserEntity;
+import org.denevell.userservice.model.model.UserLoggedInModel;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Path("user/password")
-public class ChangePasswordRequest {
+public class PasswordChangeRequest {
 	
 	@Context UriInfo info;
 	@Context HttpServletResponse mResponse;
 	@Context ServletContext context;
-    @Inject UserChangePasswordModel mUserChangePassword;
-	@Inject UserGetLoggedInModel mUserLogggedInModel;
+    @Inject PasswordChangeModel mUserChangePassword;
+	@Inject UserLoggedInModel mUserLogggedInModel;
 	
-	public ChangePasswordRequest() {
+	public PasswordChangeRequest() {
 	}
 	
 	@POST
@@ -43,7 +43,7 @@ public class ChangePasswordRequest {
 			return;
 		}
 		int res = mUserChangePassword.changePassword(userEntity.getUsername(), changePass.getPassword());
-		if(res==UserChangePasswordModel.NOT_FOUND) mResponse.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR); 
+		if(res==PasswordChangeModel.NOT_FOUND) mResponse.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR); 
 	}
 
 	@POST
@@ -59,7 +59,7 @@ public class ChangePasswordRequest {
 			return;
 		}
 		int res = mUserChangePassword.changePassword(username, changePass.getPassword());
-		if(res==UserChangePasswordModel.NOT_FOUND) mResponse.sendError(HttpServletResponse.SC_NOT_FOUND); 
+		if(res==PasswordChangeModel.NOT_FOUND) mResponse.sendError(HttpServletResponse.SC_NOT_FOUND); 
 	}
 	
 	@XmlRootElement

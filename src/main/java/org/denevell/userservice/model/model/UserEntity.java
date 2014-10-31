@@ -1,4 +1,4 @@
-package org.denevell.userservice.model.entities;
+package org.denevell.userservice.model.model;
 
 import javax.persistence.Transient;
 

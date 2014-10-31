@@ -13,14 +13,14 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import org.denevell.natch.io.users.User;
-import org.denevell.userservice.model.entities.UserEntity;
-import org.denevell.userservice.model.interfaces.UserGetLoggedInModel;
+import org.denevell.userservice.model.model.UserEntity;
+import org.denevell.userservice.model.model.UserLoggedInModel;
 
 @Path("user/get")
 public class UserRequest {
 
 	@Context HttpServletResponse mResponse;
-	@Inject UserGetLoggedInModel mUserLogggedInModel;
+	@Inject UserLoggedInModel mUserLogggedInModel;
 
 	public UserRequest() {
 	}
