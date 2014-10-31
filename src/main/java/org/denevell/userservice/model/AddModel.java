@@ -1,7 +1,6 @@
 package org.denevell.userservice.model;
 
-import org.denevell.jrappy.Jrappy;
-import org.denevell.jrappy.Jrappy.RunnableWith;
+import org.denevell.userservice.model.Jrappy.RunnableWith;
 import org.jvnet.hk2.annotations.Service;
 
 public interface AddModel {

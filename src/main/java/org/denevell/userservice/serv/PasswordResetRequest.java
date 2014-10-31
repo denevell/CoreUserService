@@ -23,12 +23,9 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class PasswordResetRequest {
 	
 	@Context HttpServletResponse mResponse;
-    @Inject PasswordResetRequestModel mUserModelRequest;
-    @Inject PasswordResetDeleteModel mUserModelDelete;
+  @Inject PasswordResetRequestModel mUserModelRequest;
+  @Inject PasswordResetDeleteModel mUserModelDelete;
 	@Inject UserLoggedInModel mUserLogggedInModel;
-	
-	public PasswordResetRequest() {
-	}
 	
 	@POST
 	@Path("/{recoveryEmail}")

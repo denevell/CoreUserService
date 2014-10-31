@@ -1,6 +1,5 @@
 package org.denevell.userservice.model;
 
-import org.denevell.jrappy.Jrappy;
 import org.jvnet.hk2.annotations.Service;
 
 public interface UserLoggedInUserFromPermStoreModel {

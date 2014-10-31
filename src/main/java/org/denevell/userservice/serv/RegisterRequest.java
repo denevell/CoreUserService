@@ -27,9 +27,6 @@ public class RegisterRequest {
   @Inject
   AddModel mUserAddModel;
 
-  public RegisterRequest() {
-  }
-
   @PUT
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)

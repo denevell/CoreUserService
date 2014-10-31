@@ -3,7 +3,6 @@ package org.denevell.userservice.model;
 import javax.inject.Inject;
 
 import org.apache.log4j.Logger;
-import org.denevell.jrappy.Jrappy;
 import org.denevell.userservice.LoginAuthKeysSingleton;
 import org.denevell.userservice.PasswordSaltUtils;
 import org.jvnet.hk2.annotations.Service;

@@ -1,6 +1,5 @@
 package org.denevell.userservice.model;
 
-import org.denevell.jrappy.Jrappy;
 
 public interface PasswordResetRequestModel {
   public static final int REQUESTED = 0;

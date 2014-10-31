@@ -2,8 +2,6 @@ package org.denevell.userservice.model;
 
 import java.util.List;
 
-import org.denevell.jrappy.Jrappy;
-
 public interface UsersModel {
 
   List<UserEntity> list(int start, int limit);
