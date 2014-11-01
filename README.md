@@ -6,4 +6,14 @@ TODO
 ====
 
 * Reimport the ui tests
-* Remove uneeded getters and setters
+* Remove web.xml for annotations
+* Reintegrate the changes in main
+* Create a jar which eclipse uses to generate
+* Learn how to use velocity
+* Add the mapping file
+
+LATER
+=====
+
+* Test in overall system too
+* Reset password by unique code
