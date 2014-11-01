@@ -13,6 +13,7 @@ public class UserChangePasswordModelImpl implements UserChangePasswordModel {
 	public int changePassword(
 			final String username, 
 			final String password) {
+	  try {
 		boolean found = mModel
 			.startTransaction()
 			.queryParam("username", username)
@@ -24,12 +25,15 @@ public class UserChangePasswordModelImpl implements UserChangePasswordModel {
 					}
 				}, 
 				UserEntity.class);
-		mModel.commitAndCloseEntityManager();
 		if(found) {
 			return UserChangePasswordModel.CHANGED;
 		} else {
 			return UserChangePasswordModel.NOT_FOUND;
 		}
+	    
+	  } finally {
+		mModel.commitAndCloseEntityManager();
+	  }
 	}
 
 }

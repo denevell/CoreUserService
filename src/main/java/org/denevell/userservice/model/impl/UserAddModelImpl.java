@@ -13,6 +13,7 @@ public class UserAddModelImpl implements UserAddModel {
 	private Jrappy<UserEntity> mModel = new Jrappy<UserEntity>(LoginClearContextListener.sEntityManager);
 
 	public int add(final UserEntity user) {
+	  try {
 		boolean exists = mModel
 				.startTransaction()
 				.namedQuery(UserEntity.NAMED_QUERY_FIND_BY_RECOVERY_EMAIL)
@@ -31,12 +32,14 @@ public class UserAddModelImpl implements UserAddModel {
 						})
 				.queryParam("username", user.getUsername())
 				.addIfDoesntExist(UserEntity.NAMED_QUERY_FIND_EXISTING_USERNAME, user);
-			mModel.commitAndCloseEntityManager();
 			if(!added) {
 				return UserAddModel.USER_ALREADY_EXISTS;
 			} else {
 				return UserAddModel.ADDED;
 			}
+	  } finally {
+			mModel.commitAndCloseEntityManager();
+	  }
 	}
 
 }

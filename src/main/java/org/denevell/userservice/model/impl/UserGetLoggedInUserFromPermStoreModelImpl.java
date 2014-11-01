@@ -15,6 +15,7 @@ public class UserGetLoggedInUserFromPermStoreModelImpl implements UserGetLoggedI
 
 	@Override
 	public UserEntity get(Object authObject) {
+	  try {
 		UserLoggedInEntity userId = mModel
 			.startTransaction()
 			.find(authObject, false, UserLoggedInEntity.class);
@@ -22,11 +23,13 @@ public class UserGetLoggedInUserFromPermStoreModelImpl implements UserGetLoggedI
 			UserEntity res = mUserModel
 				.useTransaction(mModel.getEntityManager())
 				.find(userId.getUserId(), false, UserEntity.class);
-			mUserModel.commitAndCloseEntityManager();
 			return res;
 		} else {
 			return null;
 		}
+	  } finally {
+			mUserModel.commitAndCloseEntityManager();
+	  }
 	}
 
 }

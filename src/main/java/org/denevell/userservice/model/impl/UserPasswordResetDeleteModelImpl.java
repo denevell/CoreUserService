@@ -12,6 +12,7 @@ public class UserPasswordResetDeleteModelImpl implements UserPasswordResetDelete
 	
 	@Override
 	public int deleteRequest(String username) {
+	  try {
 	    UserEntity user = mModel
 	    		.startTransaction()
 	    		.queryParam("username", username)
@@ -23,8 +24,10 @@ public class UserPasswordResetDeleteModelImpl implements UserPasswordResetDelete
 		mModel
 			.useTransaction(mModel.getEntityManager())
 			.update(user);
-		mModel.commitAndCloseEntityManager();
 		return UserPasswordResetDeleteModel.UPDATED;
+	  } finally {
+		mModel.commitAndCloseEntityManager();
+	  }
 	}
 
 }

@@ -14,6 +14,7 @@ public class UserAdminToggleModelImpl implements UserAdminToggleModel {
 	
 	@Override
 	public int toggleAdmin(final String userId) {
+	  try {
 		boolean found = mModel
 				.startTransaction()
         		.queryParam("username", userId)
@@ -27,12 +28,14 @@ public class UserAdminToggleModelImpl implements UserAdminToggleModel {
         				}
         			}
         		}, UserEntity.class);
-		mModel.commitAndCloseEntityManager();
 		if(found) {
 			return UserAdminToggleModel.TOGGLED;
 		} else {
 			return UserAdminToggleModel.CANT_FIND;
 		}
+	  } finally {
+		mModel.commitAndCloseEntityManager();
+	  }
 	}
 
 }

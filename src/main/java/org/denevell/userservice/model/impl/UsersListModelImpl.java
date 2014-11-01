@@ -13,12 +13,15 @@ public class UsersListModelImpl implements UsersListModel {
 	
 	@Override
 	public List<UserEntity> list(int start, int limit) {
+	  try {
 		List<UserEntity> usersFromDb = mModel
 				.startTransaction()
 				.namedQuery(UserEntity.NAMED_QUERY_LIST_USERS).list(
 						UserEntity.class);
-		mModel.commitAndCloseEntityManager();
 		return usersFromDb;
+	  } finally {
+	    mModel.commitAndCloseEntityManager();
+	  }
 	}
 
 }

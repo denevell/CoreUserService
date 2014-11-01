@@ -21,12 +21,15 @@ public class UserAddLoggedInUserToPermStoreModelImpl implements UserAddLoggedInU
 		UserLoggedInEntity instance = new UserLoggedInEntity();
 		instance.setAuthKey((String)authObject);
 		instance.setUserId(userId);
+		try {
 		mModel
 			.startTransaction()
 			.namedQuery(UserLoggedInEntity.NAMED_QUERY_FIND_BY_AUTH_KEY)
 			.queryParam("auth_key", instance.getAuthKey())
 			.addAndDeleteIfExistsPreviously(instance, UserLoggedInEntity.class);
+		} finally {
 		mModel.commitAndCloseEntityManager();
+		}
 	}
 
 }

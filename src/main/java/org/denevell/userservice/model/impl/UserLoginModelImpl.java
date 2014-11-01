@@ -40,13 +40,17 @@ public class UserLoginModelImpl implements UserLoginModel {
 	
 	@Override
 	public UserEntityAndAuthKey login(String username, String password) {
-		// Find user based on username
-		UserEntity res = mLoginModel
+    // Find user based on username
+		UserEntity res = null;
+	  try {
+		res = mLoginModel
 				.startTransaction()
 				.namedQuery(UserEntity.NAMED_QUERY_FIND_EXISTING_USERNAME)
 				.queryParam("username", username)
 				.single(UserEntity.class);
+	  } finally {
 		mLoginModel.commitAndCloseEntityManager();
+	  }
 		if(res==null) {
             return null;
 		}

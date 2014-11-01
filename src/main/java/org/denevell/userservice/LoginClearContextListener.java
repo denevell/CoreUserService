@@ -5,15 +5,13 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Enumeration;
 
-import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 public class LoginClearContextListener implements ServletContextListener{
-	private static EntityManagerFactory sFactory;
-	public static EntityManager sEntityManager;
+	public static EntityManagerFactory sEntityManager;
 
   @Override
 	public void contextDestroyed(ServletContextEvent arg0) {
@@ -21,9 +19,7 @@ public class LoginClearContextListener implements ServletContextListener{
 		//LoginAuthKeysSingleton instance = LoginAuthKeysSingleton.getInstance();
 		//instance.kill();
 		//unload drivers
-		sEntityManager.clear();
 		sEntityManager.close();
-		sFactory.close();
         Enumeration<Driver> drivers = DriverManager.getDrivers();
         while (drivers.hasMoreElements()) {
             Driver driver = drivers.nextElement();
@@ -38,8 +34,7 @@ public class LoginClearContextListener implements ServletContextListener{
  
 	@Override
 	public void contextInitialized(ServletContextEvent arg0) {
-		sFactory = Persistence.createEntityManagerFactory("PERSISTENCE_UNIT_NAME");		
-		sEntityManager = sFactory.createEntityManager();
+	  sEntityManager = Persistence.createEntityManagerFactory("PERSISTENCE_UNIT_NAME");		
 		System.out.println("ServletContextListener started");	
 	}
 }

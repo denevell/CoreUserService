@@ -11,6 +11,7 @@ public class UserPasswordResetRequestModelImpl implements UserPasswordResetReque
 	
 	@Override
 	public int requestReset(String recoveryEmail) {
+	  try {
 	    UserEntity user = mModel 
 	    		.namedQuery(UserEntity.NAMED_QUERY_FIND_BY_RECOVERY_EMAIL)
 	    		.startTransaction()
@@ -21,9 +22,12 @@ public class UserPasswordResetRequestModelImpl implements UserPasswordResetReque
 		user.setPasswordResetRequest(true);
 		mModel
 			.useTransaction(mModel.getEntityManager())
-			.update(user)
-			.commitAndCloseEntityManager();
+			.update(user);
 	    return UserPasswordResetRequestModel.REQUESTED;
+	    
+	  } finally {
+			mModel.commitAndCloseEntityManager();
+	  }
 	}
 
 }
