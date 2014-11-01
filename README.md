@@ -5,9 +5,9 @@ UI tests still in Natch-REST.
 TODO
 ====
 
-* Reimport the ui tests
+~~ * Reimport the ui tests
 * Reimplement three tests commented out
-* Create a jar which eclipse uses to generate
+* Create an annotation jar which eclipse uses to generate
 * Learn how to use velocity
 * Add the mapping file
 

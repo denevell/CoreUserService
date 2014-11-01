@@ -6,24 +6,25 @@ import static org.junit.Assert.assertTrue;
 
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.client.Client;
 import javax.ws.rs.client.WebTarget;
 
 import org.denevell.natch.functional.pageobjects.LoginPO;
 import org.denevell.natch.functional.pageobjects.RegisterPO;
 import org.denevell.userservice.serv.LoginRequest.LoginResourceReturnData;
 import org.denevell.userservice.serv.UserRequest.User;
+import org.glassfish.jersey.client.JerseyClientBuilder;
+import org.glassfish.jersey.jackson.JacksonFeature;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
 public class LoginFunctional {
 	
-	private WebTarget service;
 	private RegisterPO registerPo;
 
 	@Before
 	public void setup() throws Exception {
-		service = TestUtils.getRESTClient();
 		registerPo = new RegisterPO();
 		TestUtils.deleteTestDb();
 	}
@@ -165,20 +166,21 @@ public class LoginFunctional {
 	@Test
 	public void shouldntLoginWithBadAuthKey() {
 		// Arrange 
-	    registerPo.register("aaron@aaron.com", "passy");
+	  registerPo.register("aaron@aaron.com", "passy");
 		LoginResourceReturnData loginResult = new LoginPO().login("aaron@aaron.com", "passy");
+		Client client = JerseyClientBuilder.createClient().register(JacksonFeature.class);
+		WebTarget service = client.target(TestUtils.URL_USER_SERVICE);
 
 		loginResult.getAuthKey();
 	    
-	    // Act
+	  // Act
 		try {
-		service
-	    	.path("rest").path("user").path("get").request()
+		service.path("rest").path("user").path("get").request()
 			.header("AuthKey", loginResult.getAuthKey()+"INCORRECT")
 	    	.get(User.class);
 		} catch(WebApplicationException e) {
 			// Assert
-			assertEquals("Should get 401", 404, e.getResponse().getStatus()); 
+			assertEquals("Should get 404", 404, e.getResponse().getStatus()); 
 			return;
 		}
 		assertTrue("Wanted to see a 401", false);
