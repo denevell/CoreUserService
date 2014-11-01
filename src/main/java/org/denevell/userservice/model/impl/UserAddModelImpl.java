@@ -2,6 +2,7 @@ package org.denevell.userservice.model.impl;
 
 import org.denevell.jrappy.Jrappy;
 import org.denevell.jrappy.Jrappy.RunnableWith;
+import org.denevell.userservice.LoginClearContextListener;
 import org.denevell.userservice.model.entities.UserEntity;
 import org.denevell.userservice.model.interfaces.UserAddModel;
 import org.jvnet.hk2.annotations.Service;
@@ -9,7 +10,7 @@ import org.jvnet.hk2.annotations.Service;
 @Service
 public class UserAddModelImpl implements UserAddModel {
 	
-	private Jrappy<UserEntity> mModel = new Jrappy<UserEntity>("PERSISTENCE_UNIT_NAME");
+	private Jrappy<UserEntity> mModel = new Jrappy<UserEntity>(LoginClearContextListener.sEntityManager);
 
 	public int add(final UserEntity user) {
 		boolean exists = mModel

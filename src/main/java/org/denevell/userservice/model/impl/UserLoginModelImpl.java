@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import org.apache.log4j.Logger;
 import org.denevell.jrappy.Jrappy;
 import org.denevell.userservice.LoginAuthKeysSingleton;
+import org.denevell.userservice.LoginClearContextListener;
 import org.denevell.userservice.PasswordSaltUtils;
 import org.denevell.userservice.model.entities.UserEntity;
 import org.denevell.userservice.model.interfaces.UserAddLoggedInUserToPermStoreModel;
@@ -32,7 +33,7 @@ import org.jvnet.hk2.annotations.Service;
 @Service
 public class UserLoginModelImpl implements UserLoginModel {
 
-	private Jrappy<UserEntity> mLoginModel = new Jrappy<UserEntity>("PERSISTENCE_UNIT_NAME");
+	private Jrappy<UserEntity> mLoginModel = new Jrappy<UserEntity>(LoginClearContextListener.sEntityManager);
 	private LoginAuthKeysSingleton mAuthDataGenerator = LoginAuthKeysSingleton.getInstance();
 	private PasswordSaltUtils mSaltedPasswordUtils = new PasswordSaltUtils();
 	@Inject UserAddLoggedInUserToPermStoreModel mLoggedInUsersPermStoreModel;

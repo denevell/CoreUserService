@@ -3,12 +3,13 @@ package org.denevell.userservice.model.impl;
 import java.util.List;
 
 import org.denevell.jrappy.Jrappy;
+import org.denevell.userservice.LoginClearContextListener;
 import org.denevell.userservice.model.entities.UserEntity;
 import org.denevell.userservice.model.interfaces.UsersListModel;
 
 public class UsersListModelImpl implements UsersListModel {
 
-	private Jrappy<UserEntity> mModel = new Jrappy<UserEntity>("PERSISTENCE_UNIT_NAME");
+	private Jrappy<UserEntity> mModel = new Jrappy<UserEntity>(LoginClearContextListener.sEntityManager);
 	
 	@Override
 	public List<UserEntity> list(int start, int limit) {

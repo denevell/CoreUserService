@@ -1,12 +1,13 @@
 package org.denevell.userservice.model.impl;
 
 import org.denevell.jrappy.Jrappy;
+import org.denevell.userservice.LoginClearContextListener;
 import org.denevell.userservice.model.entities.UserEntity;
 import org.denevell.userservice.model.interfaces.UserPasswordResetRequestModel;
 
 public class UserPasswordResetRequestModelImpl implements UserPasswordResetRequestModel {
 	
-	Jrappy<UserEntity> mModel = new Jrappy<UserEntity>("PERSISTENCE_UNIT_NAME");
+	Jrappy<UserEntity> mModel = new Jrappy<UserEntity>(LoginClearContextListener.sEntityManager);
 	
 	@Override
 	public int requestReset(String recoveryEmail) {

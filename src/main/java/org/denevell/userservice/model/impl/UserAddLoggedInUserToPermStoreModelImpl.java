@@ -1,6 +1,7 @@
 package org.denevell.userservice.model.impl;
 
 import org.denevell.jrappy.Jrappy;
+import org.denevell.userservice.LoginClearContextListener;
 import org.denevell.userservice.model.entities.UserLoggedInEntity;
 import org.denevell.userservice.model.interfaces.UserAddLoggedInUserToPermStoreModel;
 import org.jvnet.hk2.annotations.Service;
@@ -13,7 +14,7 @@ import org.jvnet.hk2.annotations.Service;
 @Service
 public class UserAddLoggedInUserToPermStoreModelImpl implements UserAddLoggedInUserToPermStoreModel {
 	
-	private Jrappy<UserLoggedInEntity> mModel = new Jrappy<UserLoggedInEntity>("PERSISTENCE_UNIT_NAME");
+	private Jrappy<UserLoggedInEntity> mModel = new Jrappy<UserLoggedInEntity>(LoginClearContextListener.sEntityManager);
 
 	@Override
 	public void add(Object authObject, long userId) {
