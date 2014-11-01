@@ -19,6 +19,7 @@ public class LoginClearContextListener implements ServletContextListener{
 		//LoginAuthKeysSingleton instance = LoginAuthKeysSingleton.getInstance();
 		//instance.kill();
 		//unload drivers
+		//sEntityManager.close();
 		sEntityManager.close();
         Enumeration<Driver> drivers = DriverManager.getDrivers();
         while (drivers.hasMoreElements()) {

@@ -2,7 +2,9 @@ package org.denevell.userservice.model.impl;
 
 import javax.inject.Singleton;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 
 import org.denevell.userservice.LoginClearContextListener;
 import org.denevell.userservice.model.entities.UserLoggedInEntity;
@@ -21,7 +23,8 @@ public class UserRemoveLoggedInUserFromPermStoreModelImpl implements UserRemoveL
 	
 	@Override
 	public void remove(Object authKey) {
-		EntityManager entityManager = LoginClearContextListener.sEntityManager.createEntityManager();
+		//EntityManagerFactory entityManager2 = Persistence.createEntityManagerFactory("PERSISTENCE_UNIT_NAME");
+    EntityManager entityManager = LoginClearContextListener.sEntityManager.createEntityManager();//entityManager2.createEntityManager();
 		EntityTransaction transaction = entityManager.getTransaction();
 		try {
 		  transaction.begin();
@@ -30,6 +33,8 @@ public class UserRemoveLoggedInUserFromPermStoreModelImpl implements UserRemoveL
 		} finally {
 		  transaction.commit();
 		  entityManager.clear();
+		  entityManager.close();
+		  //entityManager2.close();
 		}
 	}
 
