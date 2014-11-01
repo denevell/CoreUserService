@@ -12,6 +12,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.denevell.userservice.SuccessOrError;
 import org.denevell.userservice.UserEntity;
 import org.denevell.userservice.model.AddModel;
 import org.hibernate.validator.constraints.Email;

@@ -11,6 +11,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.denevell.userservice.SuccessOrError;
 import org.denevell.userservice.model.LogoutModel;
 
 @Path("user/logout")

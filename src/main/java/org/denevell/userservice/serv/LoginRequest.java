@@ -13,6 +13,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.denevell.userservice.SuccessOrError;
 import org.denevell.userservice.model.LoginModel;
 import org.denevell.userservice.model.LoginModel.UserEntityAndAuthKey;
 import org.hibernate.validator.constraints.NotBlank;

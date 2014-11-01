@@ -29,8 +29,7 @@ public class UserRequest {
   @GET
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
-  public User listUsers(@HeaderParam("AuthKey") String authKey)
-      throws IOException {
+  public User listUsers(@HeaderParam("AuthKey") String authKey) throws IOException {
     UserEntity userEntity = mUserLogggedInModel.get(authKey);
     if (userEntity == null) {
       mResponse.sendError(HttpServletResponse.SC_NOT_FOUND);

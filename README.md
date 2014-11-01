@@ -6,8 +6,7 @@ TODO
 ====
 
 * Reimport the ui tests
-* Remove web.xml for annotations
-* Reintegrate the changes in main
+* Reimplement three tests commented out
 * Create a jar which eclipse uses to generate
 * Learn how to use velocity
 * Add the mapping file

@@ -13,6 +13,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
+import org.denevell.userservice.SuccessOrError;
 import org.denevell.userservice.UserEntity;
 import org.denevell.userservice.model.AdminToggleModel;
 import org.denevell.userservice.model.UserLoggedInModel;

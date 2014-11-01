@@ -1,4 +1,4 @@
-package org.denevell.userservice.serv;
+package org.denevell.userservice;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
