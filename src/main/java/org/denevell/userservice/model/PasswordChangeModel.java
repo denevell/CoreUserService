@@ -1,5 +1,6 @@
 package org.denevell.userservice.model;
 
+import org.denevell.userservice.LoginClearContextListener;
 import org.denevell.userservice.model.Jrappy.RunnableWith;
 
 public interface PasswordChangeModel {
@@ -11,10 +12,11 @@ public interface PasswordChangeModel {
 
   public static class UserChangePasswordModelImpl implements PasswordChangeModel {
     private Jrappy<UserEntity> mModel = new Jrappy<UserEntity>(
-        "PERSISTENCE_UNIT_NAME");
+        LoginClearContextListener.sEntityManager);
 
     @Override
     public int changePassword(final String username, final String password) {
+      try {
       boolean found = mModel
           .startTransaction()
           .queryParam("username", username)
@@ -25,11 +27,13 @@ public interface PasswordChangeModel {
                   item.generatePassword(password);
                 }
               }, UserEntity.class);
-      mModel.commitAndCloseEntityManager();
       if (found) {
         return PasswordChangeModel.CHANGED;
       } else {
         return PasswordChangeModel.NOT_FOUND;
+      }
+      } finally {
+      mModel.commitAndCloseEntityManager();
       }
     }
 

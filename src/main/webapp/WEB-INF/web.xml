@@ -37,5 +37,10 @@
 		<listener-class>org.denevell.userservice.ManifestVars</listener-class>
 	</listener>
 	
+	<listener>
+    <listener-class>org.denevell.userservice.LoginClearContextListener</listener-class>
+  </listener>
+	
+	
 </web-app>
 

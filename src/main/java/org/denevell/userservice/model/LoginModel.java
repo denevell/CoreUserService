@@ -4,6 +4,7 @@ import javax.inject.Inject;
 
 import org.apache.log4j.Logger;
 import org.denevell.userservice.LoginAuthKeysSingleton;
+import org.denevell.userservice.LoginClearContextListener;
 import org.denevell.userservice.PasswordSaltUtils;
 import org.jvnet.hk2.annotations.Service;
 
@@ -46,7 +47,7 @@ public interface LoginModel {
   public static class UserLoginModelImpl implements LoginModel {
 
     private Jrappy<UserEntity> mLoginModel = new Jrappy<UserEntity>(
-        "PERSISTENCE_UNIT_NAME");
+        LoginClearContextListener.sEntityManager);
     private LoginAuthKeysSingleton mAuthDataGenerator = LoginAuthKeysSingleton
         .getInstance();
     private PasswordSaltUtils mSaltedPasswordUtils = new PasswordSaltUtils();
@@ -56,10 +57,14 @@ public interface LoginModel {
     @Override
     public UserEntityAndAuthKey login(String username, String password) {
       // Find user based on username
-      UserEntity res = mLoginModel.startTransaction()
+      UserEntity res = null;
+      try {
+      res = mLoginModel.startTransaction()
           .namedQuery(UserEntity.NAMED_QUERY_FIND_EXISTING_USERNAME)
           .queryParam("username", username).single(UserEntity.class);
+      } finally {
       mLoginModel.commitAndCloseEntityManager();
+      }
       if (res == null) {
         return null;
       }

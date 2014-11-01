@@ -2,6 +2,7 @@ package org.denevell.userservice.model;
 
 import org.denevell.userservice.model.Jrappy.RunnableWith;
 import org.denevell.userservice.LoginAuthKeysSingleton;
+import org.denevell.userservice.LoginClearContextListener;
 
 public interface AdminToggleModel {
 
@@ -13,12 +14,13 @@ public interface AdminToggleModel {
   public static class UserAdminToggleModelImpl implements AdminToggleModel {
 
     private Jrappy<UserEntity> mModel = new Jrappy<UserEntity>(
-        "PERSISTENCE_UNIT_NAME");
+        LoginClearContextListener.sEntityManager);
     private LoginAuthKeysSingleton mAuthDataGenerator = LoginAuthKeysSingleton
         .getInstance();
 
     @Override
     public int toggleAdmin(final String userId) {
+      try {
       boolean found = mModel
           .startTransaction()
           .queryParam("username", userId)
@@ -35,11 +37,13 @@ public interface AdminToggleModel {
                   }
                 }
               }, UserEntity.class);
-      mModel.commitAndCloseEntityManager();
       if (found) {
         return AdminToggleModel.TOGGLED;
       } else {
         return AdminToggleModel.CANT_FIND;
+      }
+      } finally {
+      mModel.commitAndCloseEntityManager();
       }
     }
 
