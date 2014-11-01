@@ -1,7 +1,7 @@
-package org.denevell.userservice.model.entities;
+package org.denevell.userservice;
 
 
-public class UserLoggedInEntity {
+public class LoggedInEntity {
 	
 	public static final String NAMED_QUERY_FIND_BY_AUTH_KEY = "findByAuthKey";
 	public static final String NAMED_QUERY_FIND_BY_ID = "findByUserId";
@@ -9,7 +9,7 @@ public class UserLoggedInEntity {
 	private long userId;
 	private String authKey;
 
-	public UserLoggedInEntity() {
+	public LoggedInEntity() {
 	}
 
 	public long getUserId() {

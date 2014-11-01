@@ -5,7 +5,7 @@
 http://java.sun.com/xml/ns/persistence/orm_2_0.xsd"
     version="2.0">
 
-    <entity class="org.denevell.userservice.model.entities.UserEntity"> 
+    <entity class="org.denevell.userservice.UserEntity"> 
        <table name="UserEntity" />
 	   <named-query name="findWithUsernamePassword">
 	       <query>select u from UserEntity u where u.username=:username and u.password=:password</query>
@@ -44,13 +44,13 @@ http://java.sun.com/xml/ns/persistence/orm_2_0.xsd"
        </attributes>
     </entity>    
     
-    <entity class="org.denevell.userservice.model.entities.UserLoggedInEntity"> 
+    <entity class="org.denevell.userservice.LoggedInEntity"> 
        <table name="users_loggedin" />
 	   <named-query name="findByAuthKey">
-	       <query>select u from UserLoggedInEntity u where u.authKey=:auth_key</query>
+	       <query>select u from LoggedInEntity u where u.authKey=:auth_key</query>
 	   </named-query>       
 	   <named-query name="findByUserId">
-	       <query>select u from UserLoggedInEntity u where u.userId=:user_id</query>
+	       <query>select u from LoggedInEntity u where u.userId=:user_id</query>
 	   </named-query>       
        <attributes>
             <id name="authKey">

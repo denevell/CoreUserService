@@ -11,15 +11,15 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 public class LoginClearContextListener implements ServletContextListener{
-	public static EntityManagerFactory sEntityManager;
 
-  @Override
+  public static EntityManagerFactory sEntityManager;
+
+	@Override
 	public void contextDestroyed(ServletContextEvent arg0) {
 		System.out.println("ServletContextListener destroyed");
 		//LoginAuthKeysSingleton instance = LoginAuthKeysSingleton.getInstance();
 		//instance.kill();
 		//unload drivers
-		//sEntityManager.close();
 		sEntityManager.close();
         Enumeration<Driver> drivers = DriverManager.getDrivers();
         while (drivers.hasMoreElements()) {
@@ -35,7 +35,9 @@ public class LoginClearContextListener implements ServletContextListener{
  
 	@Override
 	public void contextInitialized(ServletContextEvent arg0) {
-	  sEntityManager = Persistence.createEntityManagerFactory("PERSISTENCE_UNIT_NAME");		
+	  sEntityManager = Persistence.createEntityManagerFactory("PERSISTENCE_UNIT_NAME");             
 		System.out.println("ServletContextListener started");	
 	}
 }
+
+

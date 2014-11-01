@@ -6,8 +6,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.UUID;
 
-import org.denevell.userservice.model.entities.UserEntity;
-
 public class LoginAuthKeysSingleton {
 	private static LoginAuthKeysSingleton sInstance;
 	private Map<String, UserEntity> mLoginKeys = Collections.synchronizedMap(new HashMap<String, UserEntity>());

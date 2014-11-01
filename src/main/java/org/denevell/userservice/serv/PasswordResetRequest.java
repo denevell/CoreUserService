@@ -11,10 +11,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Context;
 
-import org.denevell.userservice.model.entities.UserEntity;
-import org.denevell.userservice.model.interfaces.UserGetLoggedInModel;
-import org.denevell.userservice.model.interfaces.UserPasswordResetDeleteModel;
-import org.denevell.userservice.model.interfaces.UserPasswordResetRequestModel;
+import org.denevell.userservice.UserEntity;
+import org.denevell.userservice.model.PasswordResetDeleteModel;
+import org.denevell.userservice.model.PasswordResetRequestModel;
+import org.denevell.userservice.model.UserLoggedInModel;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -23,18 +23,15 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class PasswordResetRequest {
 	
 	@Context HttpServletResponse mResponse;
-    @Inject UserPasswordResetRequestModel mUserModelRequest;
-    @Inject UserPasswordResetDeleteModel mUserModelDelete;
-	@Inject UserGetLoggedInModel mUserLogggedInModel;
-	
-	public PasswordResetRequest() {
-	}
+  @Inject PasswordResetRequestModel mUserModelRequest;
+  @Inject PasswordResetDeleteModel mUserModelDelete;
+	@Inject UserLoggedInModel mUserLogggedInModel;
 	
 	@POST
 	@Path("/{recoveryEmail}")
 	public void requestReset(@PathParam("recoveryEmail") @NotEmpty @NotBlank String recoveryEmail) throws IOException {
 		int result = mUserModelRequest.requestReset(recoveryEmail);
-	    if(result==UserPasswordResetRequestModel.EMAIL_NOT_FOUND) {
+	    if(result==PasswordResetRequestModel.EMAIL_NOT_FOUND) {
 	    	mResponse.sendError(HttpServletResponse.SC_NOT_FOUND);
 	    	return;
 	    } 
@@ -51,7 +48,7 @@ public class PasswordResetRequest {
 			return;
 		}
 		int result = mUserModelDelete.deleteRequest(username);
-		if(result==UserPasswordResetDeleteModel.CANT_FIND) {
+		if(result==PasswordResetDeleteModel.CANT_FIND) {
 			mResponse.sendError(HttpServletResponse.SC_NOT_FOUND);
 			return;
 		}
