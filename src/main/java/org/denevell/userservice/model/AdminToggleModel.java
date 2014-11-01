@@ -1,8 +1,10 @@
 package org.denevell.userservice.model;
 
-import org.denevell.userservice.model.Jrappy.RunnableWith;
+import org.denevell.userservice.Jrappy.RunnableWith;
+import org.denevell.userservice.Jrappy;
 import org.denevell.userservice.LoginAuthKeysSingleton;
 import org.denevell.userservice.LoginClearContextListener;
+import org.denevell.userservice.UserEntity;
 
 public interface AdminToggleModel {
 

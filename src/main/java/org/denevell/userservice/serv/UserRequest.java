@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import org.denevell.userservice.model.UserEntity;
+import org.denevell.userservice.UserEntity;
 import org.denevell.userservice.model.UserLoggedInModel;
 
 @Path("user/get")

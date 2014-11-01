@@ -1,7 +1,9 @@
 package org.denevell.userservice.model;
 
+import org.denevell.userservice.Jrappy;
 import org.denevell.userservice.LoginClearContextListener;
-import org.denevell.userservice.model.Jrappy.RunnableWith;
+import org.denevell.userservice.UserEntity;
+import org.denevell.userservice.Jrappy.RunnableWith;
 import org.jvnet.hk2.annotations.Service;
 
 public interface AddModel {

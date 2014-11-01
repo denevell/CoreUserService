@@ -1,22 +1,67 @@
-package org.denevell.userservice.model;
+package org.denevell.userservice;
 
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.Properties;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.LockModeType;
 import javax.persistence.NoResultException;
-import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
-import org.denevell.userservice.Log;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 public class Jrappy<ListItem> {
+
+  public static class EntityUtils {
+
+    public static void closeEntityConnection(EntityManager entityManager) {
+      try {
+        if (entityManager != null)
+          entityManager.clear();
+        if (entityManager != null)
+          entityManager.close();
+      } catch (Exception e) {
+        e.printStackTrace();
+        Log.info(EntityUtils.class, e.toString());
+      }
+    }
+  }
+  
+  public static class Log {
+
+    static {
+      try {
+        Reader isr = new InputStreamReader(Log.class.getClassLoader().getResourceAsStream("log4j.properties"));
+        Properties p = new Properties();
+        p.load(isr);
+        PropertyConfigurator.configure(p);
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    }
+
+    public static void info(@SuppressWarnings("rawtypes") Class c, String s) {
+      Logger.getLogger(c).info(s);
+    }
+
+    public static void error(@SuppressWarnings("rawtypes") Class c, String s, Exception e) {
+      Logger.getLogger(c).error(s, e);
+    }
+
+    public static void error(@SuppressWarnings("rawtypes") Class c, String s) {
+      Logger.getLogger(c).error(s);
+    }
+  }
 	
 	public static interface RunnableWith<ListItem> {
 		public void item(ListItem item);
@@ -56,10 +101,6 @@ public class Jrappy<ListItem> {
 		mFactory = factory;
 	}
 
-	public Jrappy(String persistenceUnitName) {
-		mFactory = Persistence.createEntityManagerFactory(persistenceUnitName);
-	}
-
 	/**
 	 * Must be called before any thing else
 	 */
@@ -81,7 +122,9 @@ public class Jrappy<ListItem> {
 	
 	public Jrappy<ListItem> commitAndCloseEntityManager() {
 		try {
-			mTransaction.commit();
+		  if(mTransaction!=null && mTransaction.isActive()) {
+		    mTransaction.commit();
+		  }
 			return this;
 		} catch(Exception e){
 			Log.error(this.getClass(), e.getMessage(), e);
@@ -89,7 +132,7 @@ public class Jrappy<ListItem> {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		} finally {
-			EntityUtils.closeEntityConnection(mEntityManager);
+		  closeEntityManager();
 		}
 	}
 

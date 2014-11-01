@@ -3,6 +3,7 @@ package org.denevell.userservice.model;
 import javax.inject.Inject;
 
 import org.denevell.userservice.LoginAuthKeysSingleton;
+import org.denevell.userservice.UserEntity;
 import org.jvnet.hk2.annotations.Service;
 
 public interface UserLoggedInModel {

@@ -12,8 +12,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.denevell.userservice.UserEntity;
 import org.denevell.userservice.model.AddModel;
-import org.denevell.userservice.model.UserEntity;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 

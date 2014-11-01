@@ -2,7 +2,9 @@ package org.denevell.userservice.model;
 
 import java.util.List;
 
+import org.denevell.userservice.Jrappy;
 import org.denevell.userservice.LoginClearContextListener;
+import org.denevell.userservice.UserEntity;
 
 public interface UsersModel {
 

@@ -1,8 +1,7 @@
-package org.denevell.userservice.model;
+package org.denevell.userservice;
 
 import javax.persistence.Transient;
 
-import org.denevell.userservice.PasswordSaltUtils;
 import org.denevell.userservice.serv.RegisterRequest.RegisterResourceInput;
 
 public class UserEntity {

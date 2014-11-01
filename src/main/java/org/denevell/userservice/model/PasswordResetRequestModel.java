@@ -1,6 +1,8 @@
 package org.denevell.userservice.model;
 
+import org.denevell.userservice.Jrappy;
 import org.denevell.userservice.LoginClearContextListener;
+import org.denevell.userservice.UserEntity;
 
 
 public interface PasswordResetRequestModel {

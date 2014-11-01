@@ -4,6 +4,7 @@ import javax.inject.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
+import org.denevell.userservice.LoggedInEntity;
 import org.denevell.userservice.LoginClearContextListener;
 import org.jvnet.hk2.annotations.Service;
 

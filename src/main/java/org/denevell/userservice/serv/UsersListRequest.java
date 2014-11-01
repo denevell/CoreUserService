@@ -15,7 +15,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import org.denevell.userservice.model.UserEntity;
+import org.denevell.userservice.UserEntity;
 import org.denevell.userservice.model.UserLoggedInModel;
 import org.denevell.userservice.model.UsersModel;
 import org.denevell.userservice.serv.UserRequest.User;

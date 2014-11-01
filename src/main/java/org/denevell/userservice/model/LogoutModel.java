@@ -5,6 +5,7 @@ import javax.inject.Singleton;
 
 import org.apache.log4j.Logger;
 import org.denevell.userservice.LoginAuthKeysSingleton;
+import org.denevell.userservice.UserEntity;
 import org.jvnet.hk2.annotations.Service;
 
 public interface LogoutModel {

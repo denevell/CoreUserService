@@ -3,9 +3,11 @@ package org.denevell.userservice.model;
 import javax.inject.Inject;
 
 import org.apache.log4j.Logger;
+import org.denevell.userservice.Jrappy;
 import org.denevell.userservice.LoginAuthKeysSingleton;
 import org.denevell.userservice.LoginClearContextListener;
 import org.denevell.userservice.PasswordSaltUtils;
+import org.denevell.userservice.UserEntity;
 import org.jvnet.hk2.annotations.Service;
 
 public interface LoginModel {

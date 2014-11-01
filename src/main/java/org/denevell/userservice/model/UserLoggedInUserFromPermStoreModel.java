@@ -1,6 +1,9 @@
 package org.denevell.userservice.model;
 
+import org.denevell.userservice.Jrappy;
+import org.denevell.userservice.LoggedInEntity;
 import org.denevell.userservice.LoginClearContextListener;
+import org.denevell.userservice.UserEntity;
 import org.jvnet.hk2.annotations.Service;
 
 public interface UserLoggedInUserFromPermStoreModel {

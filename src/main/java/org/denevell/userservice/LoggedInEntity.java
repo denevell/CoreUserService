@@ -1,4 +1,4 @@
-package org.denevell.userservice.model;
+package org.denevell.userservice;
 
 
 public class LoggedInEntity {

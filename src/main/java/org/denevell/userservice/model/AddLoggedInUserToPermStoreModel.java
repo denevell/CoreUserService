@@ -1,5 +1,7 @@
 package org.denevell.userservice.model;
 
+import org.denevell.userservice.Jrappy;
+import org.denevell.userservice.LoggedInEntity;
 import org.denevell.userservice.LoginClearContextListener;
 import org.jvnet.hk2.annotations.Service;
 

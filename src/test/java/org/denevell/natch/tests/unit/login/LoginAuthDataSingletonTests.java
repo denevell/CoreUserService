@@ -7,7 +7,7 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import org.denevell.userservice.LoginAuthKeysSingleton;
-import org.denevell.userservice.model.UserEntity;
+import org.denevell.userservice.UserEntity;
 import org.junit.Before;
 import org.junit.Test;
 

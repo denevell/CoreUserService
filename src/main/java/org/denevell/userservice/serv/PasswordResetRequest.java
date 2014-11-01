@@ -11,9 +11,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Context;
 
+import org.denevell.userservice.UserEntity;
 import org.denevell.userservice.model.PasswordResetDeleteModel;
 import org.denevell.userservice.model.PasswordResetRequestModel;
-import org.denevell.userservice.model.UserEntity;
 import org.denevell.userservice.model.UserLoggedInModel;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
