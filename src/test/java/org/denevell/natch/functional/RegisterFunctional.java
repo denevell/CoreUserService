@@ -6,7 +6,7 @@ import static org.junit.Assert.assertTrue;
 
 import javax.ws.rs.BadRequestException;
 
-import org.denevell.natch.functional.pageobjects.ListUsersPO;
+import org.denevell.natch.functional.pageobjects.UsersPO;
 import org.denevell.natch.functional.pageobjects.LoginPO;
 import org.denevell.natch.functional.pageobjects.RegisterPO;
 import org.denevell.userservice.serv.LoginRequest.LoginResourceReturnData;
@@ -18,13 +18,13 @@ public class RegisterFunctional {
 	
 	private RegisterPO registerPo;
 	private LoginPO loginPo;
-	private ListUsersPO listUsersPo;
+	private UsersPO listUsersPo;
 
 	@Before
 	public void setup() throws Exception {
 		registerPo = new RegisterPO();
 	    loginPo = new LoginPO();
-	    listUsersPo = new ListUsersPO();
+	    listUsersPo = new UsersPO();
 		TestUtils.deleteTestDb();
 	}
 

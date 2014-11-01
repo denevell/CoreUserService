@@ -6,10 +6,10 @@ import static org.junit.Assert.assertTrue;
 
 import javax.ws.rs.core.Response;
 
-import org.denevell.natch.functional.pageobjects.ListUsersPO;
+import org.denevell.natch.functional.pageobjects.UsersPO;
 import org.denevell.natch.functional.pageobjects.LoginPO;
 import org.denevell.natch.functional.pageobjects.RegisterPO;
-import org.denevell.natch.functional.pageobjects.SetResetPasswordPO;
+import org.denevell.natch.functional.pageobjects.PasswordResetPO;
 import org.denevell.userservice.serv.LoginRequest.LoginResourceReturnData;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,16 +17,16 @@ import org.junit.Test;
 public class ResetPasswordRequestFunctional {
 	
 	private RegisterPO registerPo;
-	private SetResetPasswordPO resetPwRequest;
+	private PasswordResetPO resetPwRequest;
 	private LoginPO loginPo;
-	private ListUsersPO listUsersPo;
+	private UsersPO listUsersPo;
 
 	@Before
 	public void setup() throws Exception {
 	    registerPo = new RegisterPO();
 	    loginPo = new LoginPO();
-	    listUsersPo = new ListUsersPO();
-	    resetPwRequest = new SetResetPasswordPO();
+	    listUsersPo = new UsersPO();
+	    resetPwRequest = new PasswordResetPO();
 		TestUtils.deleteTestDb();
 	}
 	

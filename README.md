@@ -6,7 +6,8 @@ TODO
 ====
 
 ~~ * Reimport the ui tests
-* Reimplement three tests commented out
+~~ * Add a PO for the me service
+~~ *  Reimplement three tests commented out
 * Create an annotation jar which eclipse uses to generate
 * Learn how to use velocity
 * Add the mapping file

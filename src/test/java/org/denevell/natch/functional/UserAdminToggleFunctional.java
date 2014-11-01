@@ -7,7 +7,7 @@ import static org.junit.Assert.assertTrue;
 import javax.ws.rs.WebApplicationException;
 
 import org.denevell.natch.functional.pageobjects.AdminTogglePO;
-import org.denevell.natch.functional.pageobjects.ListUsersPO;
+import org.denevell.natch.functional.pageobjects.UsersPO;
 import org.denevell.natch.functional.pageobjects.LoginPO;
 import org.denevell.natch.functional.pageobjects.RegisterPO;
 import org.denevell.userservice.SuccessOrError;
@@ -20,13 +20,13 @@ import org.junit.Test;
 public class UserAdminToggleFunctional {
 	
 	private RegisterPO registerPo;
-	private ListUsersPO listUsersPO;
+	private UsersPO listUsersPO;
 	private AdminTogglePO toggleAdminPO;
 
 	@Before
 	public void setup() throws Exception {
 	    registerPo = new RegisterPO();
-	    listUsersPO = new ListUsersPO();
+	    listUsersPO = new UsersPO();
 	    toggleAdminPO = new AdminTogglePO();
 		TestUtils.deleteTestDb();
 	}

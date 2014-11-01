@@ -6,26 +6,24 @@ import static org.junit.Assert.assertTrue;
 
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.WebTarget;
 
 import org.denevell.natch.functional.pageobjects.LoginPO;
 import org.denevell.natch.functional.pageobjects.RegisterPO;
+import org.denevell.natch.functional.pageobjects.UserPO;
 import org.denevell.userservice.serv.LoginRequest.LoginResourceReturnData;
 import org.denevell.userservice.serv.UserRequest.User;
-import org.glassfish.jersey.client.JerseyClientBuilder;
-import org.glassfish.jersey.jackson.JacksonFeature;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 public class LoginFunctional {
 	
 	private RegisterPO registerPo;
+  private UserPO userPo;
 
 	@Before
 	public void setup() throws Exception {
 		registerPo = new RegisterPO();
+		userPo = new UserPO();
 		TestUtils.deleteTestDb();
 	}
 	
@@ -149,18 +147,16 @@ public class LoginFunctional {
 		assertFalse("Should return different auth key", loginResult.getAuthKey().equals(loginResult1.getAuthKey()));		
 	}
 	
-	@Ignore
 	@Test
 	public void shouldLoginWithAuthKey() {
-		// Arrange 
-	  //  registerPo.register("aaron@aaron.com", "passy");
-		//LoginResourceReturnData loginResult = new LoginPO().login("aaron@aaron.com", "passy");
+	  registerPo.register("aaron@aaron.com", "passy");
+		LoginResourceReturnData loginResult = new LoginPO().login("aaron@aaron.com", "passy");
 	    
-	    // Act
-		//AddPostResourceReturnData result = new AddPostPO().add("s", "c", loginResult.getAuthKey());
+	  // Act
+		User u = userPo.user(loginResult.getAuthKey());
 		
 		// Assert
-		//assertTrue("Should be logged in to do this", result.isSuccessful());		
+		assertTrue("Should be logged in to do this", u.getUsername().equals("aaron@aaron.com")); 
 	}
 	
 	@Test
@@ -168,16 +164,11 @@ public class LoginFunctional {
 		// Arrange 
 	  registerPo.register("aaron@aaron.com", "passy");
 		LoginResourceReturnData loginResult = new LoginPO().login("aaron@aaron.com", "passy");
-		Client client = JerseyClientBuilder.createClient().register(JacksonFeature.class);
-		WebTarget service = client.target(TestUtils.URL_USER_SERVICE);
-
 		loginResult.getAuthKey();
 	    
 	  // Act
 		try {
-		service.path("rest").path("user").path("get").request()
-			.header("AuthKey", loginResult.getAuthKey()+"INCORRECT")
-	    	.get(User.class);
+		  userPo.user(loginResult.getAuthKey()+"INCORRECT");
 		} catch(WebApplicationException e) {
 			// Assert
 			assertEquals("Should get 404", 404, e.getResponse().getStatus()); 
@@ -186,24 +177,22 @@ public class LoginFunctional {
 		assertTrue("Wanted to see a 401", false);
 	}
 	
-	@Ignore
 	@Test
 	public void shouldLoginWithOldAuthKey() {
-	  /*
+	  // Login and check your logged in
 	  registerPo.register("aaron@aaron.com", "passy");
 		LoginResourceReturnData loginResult = new LoginPO().login("aaron@aaron.com", "passy");
-		AddPostResourceReturnData result = new AddPostPO().add("s", "c", loginResult.getAuthKey());
-		assertTrue("Should be logged in to do this", result.isSuccessful());		
+		User u = userPo.user(loginResult.getAuthKey());
+		assertTrue("Should be logged in to do this", u.getUsername().equals("aaron@aaron.com")); 
 
-	    // Act - Use a new key
+		// User a new key
 		LoginResourceReturnData newLoginResult = new LoginPO().login("aaron@aaron.com", "passy");
-		result = new AddPostPO().add("s", "c", newLoginResult.getAuthKey());
-		assertTrue("Should be logged in to do this", result.isSuccessful());		
-	    
-	    // Act - Use the old key
-		result = new AddPostPO().add("s", "c", loginResult.getAuthKey());
-		assertTrue("Should be logged in to do this", result.isSuccessful());		
-		*/
+		u = userPo.user(newLoginResult.getAuthKey());
+		assertTrue("Should be logged in to do this", u.getUsername().equals("aaron@aaron.com")); 
+		
+		// Use the old key too
+		u = userPo.user(loginResult.getAuthKey());
+		assertTrue("Should be logged in to do this", u.getUsername().equals("aaron@aaron.com")); 
 	}	
 	
 }

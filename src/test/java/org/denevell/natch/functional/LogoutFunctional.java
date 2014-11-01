@@ -9,21 +9,24 @@ import javax.ws.rs.WebApplicationException;
 import org.denevell.natch.functional.pageobjects.LoginPO;
 import org.denevell.natch.functional.pageobjects.LogoutPO;
 import org.denevell.natch.functional.pageobjects.RegisterPO;
+import org.denevell.natch.functional.pageobjects.UserPO;
 import org.denevell.userservice.serv.LoginRequest.LoginResourceReturnData;
 import org.denevell.userservice.serv.LogoutRequest.LogoutResourceReturnData;
+import org.denevell.userservice.serv.UserRequest.User;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 public class LogoutFunctional {
 	
 	private LogoutPO logoutPo;
 	private RegisterPO registerPo;
+  private UserPO userPo;
 	
 	@Before
 	public void setup() throws Exception {
 		logoutPo = new LogoutPO();
 		registerPo = new RegisterPO();
+		userPo = new UserPO();
 		TestUtils.deleteTestDb();
 	}
 	
@@ -58,18 +61,17 @@ public class LogoutFunctional {
 		
 	}
 
-	@Ignore
 	@Test
 	public void shouldLoginTwiceThenLogoutWithOneAndStillBeAbleToUseTheOther() {
 		// Arrange 
 	  registerPo.register("aaron@aaron.com", "passy");
-		//LoginResourceReturnData loginResult = new LoginPO().login("aaron@aaron.com", "passy");
-		//LoginResourceReturnData otherLoginResult = new LoginPO().login("aaron@aaron.com", "passy");
-		//logoutPo.logout(loginResult.getAuthKey());
+		LoginResourceReturnData loginResult = new LoginPO().login("aaron@aaron.com", "passy");
+		LoginResourceReturnData otherLoginResult = new LoginPO().login("aaron@aaron.com", "passy");
+		logoutPo.logout(loginResult.getAuthKey());
 
-	    // Act
-		//AddPostResourceReturnData result = addPostPo.add("s", "c", otherLoginResult.getAuthKey());
-		//assertTrue("Should be logged in to do this", result.isSuccessful());		
+	  // Act
+		User u = userPo.user(otherLoginResult.getAuthKey());
+		assertTrue("Should be logged in to do this", u.getUsername().equals("aaron@aaron.com")); 
 	}	
 	
 }

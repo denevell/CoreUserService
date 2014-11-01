@@ -6,7 +6,7 @@ import static org.junit.Assert.assertTrue;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
 
-import org.denevell.natch.functional.pageobjects.ChangePasswordPO;
+import org.denevell.natch.functional.pageobjects.PasswordChangePO;
 import org.denevell.natch.functional.pageobjects.LoginPO;
 import org.denevell.natch.functional.pageobjects.LogoutPO;
 import org.denevell.natch.functional.pageobjects.RegisterPO;
@@ -17,14 +17,14 @@ import org.junit.Test;
 public class ChangePasswordAsAdminFunctional {
 	
 	private RegisterPO registerPo;
-	private ChangePasswordPO changePwPo;
+	private PasswordChangePO changePwPo;
 	private LoginPO loginPo;
 
 	@Before
 	public void setup() throws Exception {
 	    registerPo = new RegisterPO();
 	    loginPo = new LoginPO();
-	    changePwPo = new ChangePasswordPO();
+	    changePwPo = new PasswordChangePO();
 	    TestUtils.deleteTestDb();
 	}
 	

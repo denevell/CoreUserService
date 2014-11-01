@@ -7,7 +7,7 @@ import java.util.List;
 
 import javax.ws.rs.WebApplicationException;
 
-import org.denevell.natch.functional.pageobjects.ListUsersPO;
+import org.denevell.natch.functional.pageobjects.UsersPO;
 import org.denevell.natch.functional.pageobjects.LoginPO;
 import org.denevell.natch.functional.pageobjects.RegisterPO;
 import org.denevell.userservice.serv.LoginRequest.LoginResourceReturnData;
@@ -19,12 +19,12 @@ import org.junit.Test;
 public class UsersListFunctional {
 	
 	private RegisterPO registerPo;
-	private ListUsersPO listUsersPO;
+	private UsersPO listUsersPO;
 
 	@Before
 	public void setup() throws Exception {
 	    registerPo = new RegisterPO();
-	    listUsersPO = new ListUsersPO();
+	    listUsersPO = new UsersPO();
 		TestUtils.deleteTestDb();
 	}
 	
