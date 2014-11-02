@@ -2,6 +2,9 @@
 *.jar
 build
 logs
+tmp
+apt_generated
+.factorypath
 .settings
 .project
 .classpath

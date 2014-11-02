@@ -8,9 +8,10 @@ TODO
 ~~ * Reimport the ui tests
 ~~ * Add a PO for the me service
 ~~ *  Reimplement three tests commented out
-* Create an annotation jar which eclipse uses to generate
+~~ * Create an annotation jar which eclipse uses to generate
 * Learn how to use velocity
 * Add the mapping file
+* Test with new mapping file
 
 LATER
 =====
