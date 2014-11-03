@@ -5,10 +5,8 @@ UI tests still in Natch-REST.
 TODO
 ====
 
-~~ * Reimport the ui tests
-~~ * Add a PO for the me service
-~~ *  Reimplement three tests commented out
 ~~ * Create an annotation jar which eclipse uses to generate
+* Load a file from a resource for velocity
 * Learn how to use velocity
 * Add the mapping file
 * Test with new mapping file
