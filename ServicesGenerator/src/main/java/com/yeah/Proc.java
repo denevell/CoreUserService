@@ -39,11 +39,18 @@ public class Proc extends AbstractProcessor {
   private void createSourceFile() {
         saveResourceToProject("forgen/META-INF/mapping_servgen.xml", "META-INF/mapping.xml");
         saveResourceToProject("forgen/META-INF/persistence.xml", "META-INF/persistence.xml");
+
         saveClassToProject("org/denevell/userservice/JerseyApplication.java.vm", "org.denevell.userservice.JerseyApplication");
         saveClassToProject("org/denevell/userservice/DependencyInjectionBinder.java.vm", "org.denevell.userservice.DependencyInjectionBinder");
         saveClassToProject("org/denevell/userservice/ExceptionLogger.java.vm", "org.denevell.userservice.ExceptionLogger");
-        //saveClassToProject("org/denevell/userservice/Jrappy.java.vm", "org.denevell.userservice.Jrappy");
-        //saveClassToProject("org/denevell/userservice/LoggedInEntity.java.vm", "org.denevell.userservice.LoggedInEntity");
+        saveClassToProject("org/denevell/userservice/Jrappy.java.vm", "org.denevell.userservice.Jrappy");
+        saveClassToProject("org/denevell/userservice/LoggedInEntity.java.vm", "org.denevell.userservice.LoggedInEntity");
+        saveClassToProject("org/denevell/userservice/LoginAuthKeysSingleton.java.vm", "org.denevell.userservice.LoginAuthKeysSingleton");
+        saveClassToProject("org/denevell/userservice/LoginClearContextListener.java.vm", "org.denevell.userservice.LoginClearContextListener");
+        saveClassToProject("org/denevell/userservice/ManifestVars.java.vm", "org.denevell.userservice.ManifestVars");
+        saveClassToProject("org/denevell/userservice/PasswordSaltUtils.java.vm", "org.denevell.userservice.PasswordSaltUtils");
+        saveClassToProject("org/denevell/userservice/SuccessOrError.java.vm", "org.denevell.userservice.SuccessOrError");
+        saveClassToProject("org/denevell/userservice/UserEntity.java.vm", "org.denevell.userservice.UserEntity");
         
         saveClassToProject("org/denevell/userservice/serv/PasswordChangeRequest.java.vm", "org.denevell.userservice.serv.PasswordChangeRequest");
         saveClassToProject("org/denevell/userservice/serv/UsersListRequest.java.vm", "org.denevell.userservice.serv.UsersListRequest");
@@ -53,6 +60,19 @@ public class Proc extends AbstractProcessor {
         saveClassToProject("org/denevell/userservice/serv/RegisterRequest.java.vm", "org.denevell.userservice.serv.RegisterRequest");
         saveClassToProject("org/denevell/userservice/serv/UsersAdminToggleRequest.java.vm", "org.denevell.userservice.serv.UsersAdminToggleRequest");
         saveClassToProject("org/denevell/userservice/serv/UserRequest.java.vm", "org.denevell.userservice.serv.UserRequest");
+        
+        saveClassToProject("org/denevell/userservice/model/AddLoggedInUserToPermStoreModel.java.vm", "org.denevell.userservice.model.AddLoggedInUserToPermStoreModel");
+        saveClassToProject("org/denevell/userservice/model/AddModel.java.vm", "org.denevell.userservice.model.AddModel");
+        saveClassToProject("org/denevell/userservice/model/AdminToggleModel.java.vm", "org.denevell.userservice.model.AdminToggleModel");
+        saveClassToProject("org/denevell/userservice/model/LoginModel.java.vm", "org.denevell.userservice.model.LoginModel");
+        saveClassToProject("org/denevell/userservice/model/LogoutModel.java.vm", "org.denevell.userservice.model.LogoutModel");
+        saveClassToProject("org/denevell/userservice/model/PasswordChangeModel.java.vm", "org.denevell.userservice.model.PasswordChangeModel");
+        saveClassToProject("org/denevell/userservice/model/PasswordResetDeleteModel.java.vm", "org.denevell.userservice.model.PasswordResetDeleteModel");
+        saveClassToProject("org/denevell/userservice/model/PasswordResetRequestModel.java.vm", "org.denevell.userservice.model.PasswordResetRequestModel");
+        saveClassToProject("org/denevell/userservice/model/RemoveLoggedInUserFromPermStoreModel.java.vm", "org.denevell.userservice.model.RemoveLoggedInUserFromPermStoreModel");
+        saveClassToProject("org/denevell/userservice/model/UserLoggedInModel.java.vm", "org.denevell.userservice.model.UserLoggedInModel");
+        saveClassToProject("org/denevell/userservice/model/UserLoggedInUserFromPermStoreModel.java.vm", "org.denevell.userservice.model.UserLoggedInUserFromPermStoreModel");
+        saveClassToProject("org/denevell/userservice/model/UsersModel.java.vm", "org.denevell.userservice.model.UsersModel");
   }
 
   private void saveResourceToProject(String input, String output) {
@@ -77,7 +97,8 @@ public class Proc extends AbstractProcessor {
     openWriter.flush();
     openWriter.close();
       } catch (Exception e) {
-        processingEnv.getMessager().printMessage(Kind.NOTE, e.toString());
+        processingEnv.getMessager().printMessage(Kind.ERROR, e.toString());
+        throw new RuntimeException(e);
       }
   }
 
@@ -111,13 +132,6 @@ public class Proc extends AbstractProcessor {
 }
     /*
       
-      FileObject fileOb = processingEnv.getFiler().createResource(
-          StandardLocation.SOURCE_OUTPUT, 
-          "", 
-          "sup.yeah");
-      Writer resOut = fileOb.openWriter();
-      BufferedWriter bw = new BufferedWriter(resOut);
-
     Velocity.init("velocity.properties");
     VelocityEngine ve = new VelocityEngine();
     ve.setProperty("runtime.log.logsystem.class", "org.apache.velocity.runtime.log.NullLogSystem");

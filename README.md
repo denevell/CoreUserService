@@ -10,7 +10,9 @@ TODO
 ~~ * Learn how to use velocity
 ~~ * Add the mapping file
 ~~ * Test with new mapping file
-* Add rest.
+~~ * Add rest.
+* Move services project into itss own right
+* Decide where to keep tests
 
 LATER
 =====
