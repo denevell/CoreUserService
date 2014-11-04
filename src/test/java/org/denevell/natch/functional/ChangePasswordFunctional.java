@@ -6,11 +6,11 @@ import static org.junit.Assert.assertTrue;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
 
-import org.denevell.natch.functional.pageobjects.PasswordChangePO;
 import org.denevell.natch.functional.pageobjects.LoginPO;
+import org.denevell.natch.functional.pageobjects.LoginPO.LoginResourceReturnData;
 import org.denevell.natch.functional.pageobjects.LogoutPO;
+import org.denevell.natch.functional.pageobjects.PasswordChangePO;
 import org.denevell.natch.functional.pageobjects.RegisterPO;
-import org.denevell.userservice.serv.LoginRequest.LoginResourceReturnData;
 import org.junit.Before;
 import org.junit.Test;
 

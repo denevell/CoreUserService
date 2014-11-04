@@ -2,9 +2,10 @@ package org.denevell.natch.functional.pageobjects;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.WebTarget;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.denevell.natch.functional.TestUtils;
-import org.denevell.userservice.serv.LogoutRequest.LogoutResourceReturnData;
+import org.denevell.userservice.SuccessOrError;
 import org.glassfish.jersey.client.JerseyClientBuilder;
 import org.glassfish.jersey.jackson.JacksonFeature;
 
@@ -24,4 +25,8 @@ public class LogoutPO {
 			.header("AuthKey", authKey)
 	    	.delete(LogoutResourceReturnData.class);		
 	}
+  @XmlRootElement
+  public static class LogoutResourceReturnData extends SuccessOrError {
+
+  }
 }

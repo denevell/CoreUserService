@@ -10,3 +10,5 @@ apt_generated
 .classpath
 .gradle
 /bin/
+/apt_gen/
+/.apt_generated/

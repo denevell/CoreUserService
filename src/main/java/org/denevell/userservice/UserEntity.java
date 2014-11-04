@@ -2,8 +2,6 @@ package org.denevell.userservice;
 
 import javax.persistence.Transient;
 
-import org.denevell.userservice.serv.RegisterRequest.RegisterResourceInput;
-
 public class UserEntity {
 	
 	public static final String NAMED_QUERY_FIND_WITH_USERNAME_AND_PASSWORD = "findWithUsernamePassword";
@@ -26,13 +24,6 @@ public class UserEntity {
 	public UserEntity(String username, String pass) {
 		this.username = username;
 		this.password = pass;
-	}
-
-	public UserEntity(RegisterResourceInput register) {
-		this.username = register.getUsername();
-		this.originalPassword = register.getPassword();
-		generatePassword(originalPassword);
-		this.recoveryEmail = register.getRecoveryEmail();
 	}
 	
 	public UserEntity() {

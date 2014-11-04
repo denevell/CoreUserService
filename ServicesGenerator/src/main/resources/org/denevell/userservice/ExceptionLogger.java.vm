@@ -19,7 +19,7 @@ public class ExceptionLogger implements Filter {
 			chain.doFilter(req, resp);		
 		} catch (Exception e) {
 			Logger.getLogger(getClass()).error("Exception while in CoreUserService project", e);
-			throw e;
+			throw new RuntimeException(e);
 		}
 	}
 

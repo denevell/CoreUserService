@@ -34,8 +34,15 @@ public class RegisterRequest {
   public RegisterResourceReturnData register(
       @Valid RegisterResourceInput registerInput) {
     RegisterResourceReturnData regReturnData = new RegisterResourceReturnData();
-    UserEntity u = new UserEntity(registerInput);
+
+    UserEntity u = new UserEntity();
+		u.setUsername(registerInput.getUsername());
+		u.setOriginalPassword(registerInput.getPassword());
+		u.generatePassword(registerInput.getPassword());
+		u.setRecoveryEmail(registerInput.getRecoveryEmail());
+    
     int added = mUserAddModel.add(u);
+
     if (added == AddModel.EMAIL_ALREADY_EXISTS) {
       regReturnData.setSuccessful(false);
       regReturnData.setError("Email already exists");

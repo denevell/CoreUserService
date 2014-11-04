@@ -5,11 +5,13 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.denevell.natch.functional.TestUtils;
-import org.denevell.userservice.serv.PasswordChangeRequest.ChangePasswordInput;
 import org.glassfish.jersey.client.JerseyClientBuilder;
 import org.glassfish.jersey.jackson.JacksonFeature;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 
 public class PasswordChangePO {
 
@@ -39,6 +41,19 @@ public class PasswordChangePO {
 	    	.header("AuthKey", authKey)
 	    	.post(Entity.entity(changePassword, MediaType.APPLICATION_JSON));
 		return res;
+	}
+
+	@XmlRootElement
+	public static class ChangePasswordInput {
+	  @NotEmpty @NotBlank private String password;
+
+	  public String getPassword() {
+	    return password;
+	  }
+
+	  public void setPassword(String password) {
+	    this.password = password;
+	  }
 	}
 
 }

@@ -7,13 +7,13 @@ import static org.junit.Assert.assertTrue;
 import javax.ws.rs.WebApplicationException;
 
 import org.denevell.natch.functional.pageobjects.AdminTogglePO;
-import org.denevell.natch.functional.pageobjects.UsersPO;
 import org.denevell.natch.functional.pageobjects.LoginPO;
+import org.denevell.natch.functional.pageobjects.LoginPO.LoginResourceReturnData;
 import org.denevell.natch.functional.pageobjects.RegisterPO;
+import org.denevell.natch.functional.pageobjects.UserPO.User;
+import org.denevell.natch.functional.pageobjects.UsersPO;
+import org.denevell.natch.functional.pageobjects.UsersPO.UserList;
 import org.denevell.userservice.SuccessOrError;
-import org.denevell.userservice.serv.LoginRequest.LoginResourceReturnData;
-import org.denevell.userservice.serv.UserRequest.User;
-import org.denevell.userservice.serv.UsersListRequest.UserList;
 import org.junit.Before;
 import org.junit.Test;
 
