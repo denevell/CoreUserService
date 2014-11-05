@@ -1,7 +1,7 @@
 package org.denevell.userservice;
 
 
-@com.yeah.Proc.UserService(
+@org.denevell.userservice.AnnotationProcessor.UserService(
     persistenceUnitName="PERSISTENCE_UNIT_NAME")
 public class Generator {
   

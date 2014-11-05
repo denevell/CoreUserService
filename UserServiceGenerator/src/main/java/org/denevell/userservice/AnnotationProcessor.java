@@ -1,4 +1,4 @@
-package com.yeah;
+package org.denevell.userservice;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -24,8 +24,8 @@ import javax.tools.StandardLocation;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
 
-@SupportedAnnotationTypes({"com.yeah.Proc.UserService"})
-public class Proc extends AbstractProcessor {
+@SupportedAnnotationTypes({"org.denevell.userservice.AnnotationProcessor.UserService"})
+public class AnnotationProcessor extends AbstractProcessor {
   
   @Target(ElementType.TYPE)
   @Retention(RetentionPolicy.SOURCE)

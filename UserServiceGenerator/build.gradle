@@ -9,14 +9,6 @@ dependencies {
     compile 'org.apache.velocity:velocity:1.7'
 }
 
-sourceSets {
-    generated {
-        java {
-            srcDirs = ['src/main/generated']
-        }
-    }
-}
-
 jar {
     // Include all the dependencies to create a fat jar so we can use the processor elsewhere
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
@@ -32,13 +24,3 @@ compileJava {
 	sourceCompatibility = JavaVersion.VERSION_1_7
 	targetCompatibility = JavaVersion.VERSION_1_7
 }
-
-task ap(type: JavaCompile, group: 'build') {
-    source = sourceSets.main.java
-    classpath = sourceSets.main.runtimeClasspath
-    options.compilerArgs = [
-    "-proc:only",
-    "-processor", "com.yeah.Proc"]
-    destinationDir = sourceSets.generated.java.srcDirs.iterator().next()
-}
-//build.dependsOn = [ap]
