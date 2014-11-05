@@ -1,0 +1,3 @@
+[submodule "UserServiceGenerator"]
+	path = UserServiceGenerator
+	url = https://github.com/denevell/UserServiceGenerator
