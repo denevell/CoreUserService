@@ -2,7 +2,7 @@ package org.denevell.userservice.model;
 
 import org.denevell.userservice.Jrappy;
 import org.denevell.userservice.LoggedInEntity;
-import org.denevell.userservice.LoginClearContextListener;
+import org.denevell.userservice.UserServiceContainerInitializer;
 import org.jvnet.hk2.annotations.Service;
 
 public interface AddLoggedInUserToPermStoreModel {
@@ -19,7 +19,7 @@ public interface AddLoggedInUserToPermStoreModel {
   public static class UserAddLoggedInUserToPermStoreModelImpl implements
       AddLoggedInUserToPermStoreModel {
 
-    private Jrappy<LoggedInEntity> mModel = new Jrappy<LoggedInEntity>(LoginClearContextListener.sEntityManager);
+    private Jrappy<LoggedInEntity> mModel = new Jrappy<LoggedInEntity>(UserServiceContainerInitializer.sEntityManager);
 
     @Override
     public void add(Object authObject, long userId) {

@@ -5,7 +5,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
 import org.denevell.userservice.LoggedInEntity;
-import org.denevell.userservice.LoginClearContextListener;
+import org.denevell.userservice.UserServiceContainerInitializer;
 import org.jvnet.hk2.annotations.Service;
 
 public interface RemoveLoggedInUserFromPermStoreModel {
@@ -26,7 +26,7 @@ public interface RemoveLoggedInUserFromPermStoreModel {
 
     @Override
     public void remove(Object authKey) {
-      EntityManager entityManager = LoginClearContextListener.sEntityManager.createEntityManager();
+      EntityManager entityManager = UserServiceContainerInitializer.sEntityManager.createEntityManager();
       EntityTransaction transaction = entityManager.getTransaction();
       try {
       transaction.begin();

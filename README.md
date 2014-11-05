@@ -11,11 +11,17 @@ TODO
 ~~ * Add the mapping file
 ~~ * Test with new mapping file
 ~~ * Add rest.
-* Move services project into itss own right
-* Decide where to keep tests
+~~ * Move persistence back into project with passed in name for such
+~~ * Create persistence unit based on supplied name
+~~ * web.xml?
+~~ * Why is it messed up in eclipse?
+* Move services project into its own right
+* Won't have the same path as the rest project mess things up?
 
 LATER
 =====
 
 * Test in overall system too
 * Reset password by unique code
+* Decide where to keep tests
+* Figure out how to force the correct mapping for the persistence.xml

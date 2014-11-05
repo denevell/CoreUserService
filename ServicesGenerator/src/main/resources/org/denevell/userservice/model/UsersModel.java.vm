@@ -3,7 +3,7 @@ package org.denevell.userservice.model;
 import java.util.List;
 
 import org.denevell.userservice.Jrappy;
-import org.denevell.userservice.LoginClearContextListener;
+import org.denevell.userservice.UserServiceContainerInitializer;
 import org.denevell.userservice.UserEntity;
 
 public interface UsersModel {
@@ -12,7 +12,7 @@ public interface UsersModel {
 
   public static class UsersListModelImpl implements UsersModel {
 
-    private Jrappy<UserEntity> mModel = new Jrappy<UserEntity>(LoginClearContextListener.sEntityManager);
+    private Jrappy<UserEntity> mModel = new Jrappy<UserEntity>(UserServiceContainerInitializer.sEntityManager);
 
     @Override
     public List<UserEntity> list(int start, int limit) {

@@ -20,7 +20,6 @@ import javax.persistence.TypedQuery;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
-@com.yeah.UserService
 public class Jrappy<ListItem> {
 
   public static class EntityUtils {

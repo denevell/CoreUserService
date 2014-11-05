@@ -1,4 +1,8 @@
 package org.denevell.userservice;
 
-@com.yeah.UserService
-public class Generator {}
+
+@com.yeah.Proc.UserService(
+    persistenceUnitName="PERSISTENCE_UNIT_NAME")
+public class Generator {
+  
+}

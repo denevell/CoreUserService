@@ -5,7 +5,7 @@ import javax.inject.Inject;
 import org.apache.log4j.Logger;
 import org.denevell.userservice.Jrappy;
 import org.denevell.userservice.LoginAuthKeysSingleton;
-import org.denevell.userservice.LoginClearContextListener;
+import org.denevell.userservice.UserServiceContainerInitializer;
 import org.denevell.userservice.PasswordSaltUtils;
 import org.denevell.userservice.UserEntity;
 import org.jvnet.hk2.annotations.Service;
@@ -49,7 +49,7 @@ public interface LoginModel {
   public static class UserLoginModelImpl implements LoginModel {
 
     private Jrappy<UserEntity> mLoginModel = new Jrappy<UserEntity>(
-        LoginClearContextListener.sEntityManager);
+        UserServiceContainerInitializer.sEntityManager);
     private LoginAuthKeysSingleton mAuthDataGenerator = LoginAuthKeysSingleton
         .getInstance();
     private PasswordSaltUtils mSaltedPasswordUtils = new PasswordSaltUtils();
