@@ -21,16 +21,16 @@ public class UserServiceContainerInitializer implements ServletContainerInitiali
     ServletContext sc = ctx;
     ServletRegistration.Dynamic sr = sc.addServlet("UsersService", org.glassfish.jersey.servlet.ServletContainer.class);
     sr.setLoadOnStartup(1);
-    sr.addMapping("/rest/*");
+    sr.addMapping("$servicePath");
     sr.setInitParameter("javax.ws.rs.Application", "org.denevell.userservice.JerseyApplication");
     sr.setInitParameter("jersey.config.server.provider.packages", "org.denevell.userservice.serv");
 
     sc.addListener(org.denevell.userservice.ManifestVars.class);
     
     FilterRegistration filter = sc.addFilter("Logging Filter", org.denevell.userservice.ExceptionLogger.class);
-    filter.addMappingForUrlPatterns(EnumSet.of(DispatcherType.REQUEST), false, "/*");
+    filter.addMappingForUrlPatterns(EnumSet.of(DispatcherType.REQUEST), false, "*/");
 
-    sEntityManager = Persistence.createEntityManagerFactory("PERSISTENCE_UNIT_NAME");             
+    sEntityManager = Persistence.createEntityManagerFactory("$persistenceUnitName");             
     System.out.println("ServletContextListener started"); 
   }
 

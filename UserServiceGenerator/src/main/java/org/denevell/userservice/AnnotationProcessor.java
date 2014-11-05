@@ -31,9 +31,11 @@ public class AnnotationProcessor extends AbstractProcessor {
   @Retention(RetentionPolicy.SOURCE)
   public static @interface UserService {
     String persistenceUnitName();
+    String servicePath();
   }
 
   private String mPersistenceUnitName;
+  private String mServicePath;
   
   @Override
   public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
@@ -44,6 +46,7 @@ public class AnnotationProcessor extends AbstractProcessor {
       processingEnv.getMessager().printMessage(Kind.NOTE, "Found annotation: " + next);
       UserService sg = next.getAnnotation(UserService.class);
       mPersistenceUnitName = sg.persistenceUnitName();
+      mServicePath = sg.servicePath();
       if(elementsAnnotatedWith.size()>0) {
         createSourceFiles();
         return true; 
@@ -56,14 +59,15 @@ public class AnnotationProcessor extends AbstractProcessor {
     saveResourceToProject("forgen/META-INF/mapping_servgen.xml", "META-INF/userservice_mapping.xml");
     saveResourceToProject("forgen/META-INF/services/javax.servlet.ServletContainerInitializer", "META-INF/services/javax.servlet.ServletContainerInitializer");
 
-    saveClassToProject("org/denevell/userservice/UserServiceContainerInitializer.java.vm", "org.denevell.userservice.UserServiceContainerInitializer");
+    VelocityContext vc = new VelocityContext();
+    vc.put("persistenceUnitName", mPersistenceUnitName);
+    vc.put("servicePath", mServicePath);
+    saveClassToProject("org/denevell/userservice/UserServiceContainerInitializer.java.vm", "org.denevell.userservice.UserServiceContainerInitializer", vc);
     saveClassToProject("org/denevell/userservice/JerseyApplication.java.vm", "org.denevell.userservice.JerseyApplication");
     saveClassToProject("org/denevell/userservice/ExceptionLogger.java.vm", "org.denevell.userservice.ExceptionLogger");
     saveClassToProject("org/denevell/userservice/Jrappy.java.vm", "org.denevell.userservice.Jrappy");
     saveClassToProject("org/denevell/userservice/LoggedInEntity.java.vm", "org.denevell.userservice.LoggedInEntity");
     saveClassToProject("org/denevell/userservice/LoginAuthKeysSingleton.java.vm", "org.denevell.userservice.LoginAuthKeysSingleton");
-    VelocityContext vc = new VelocityContext();
-    vc.put("persistenceUnitName", mPersistenceUnitName);
     saveClassToProject("org/denevell/userservice/ManifestVars.java.vm", "org.denevell.userservice.ManifestVars");
     saveClassToProject("org/denevell/userservice/PasswordSaltUtils.java.vm", "org.denevell.userservice.PasswordSaltUtils");
     saveClassToProject("org/denevell/userservice/SuccessOrError.java.vm", "org.denevell.userservice.SuccessOrError");
