@@ -25,3 +25,4 @@ LATER
 * Reset password by unique code
 * Decide where to keep tests
 * Figure out how to force the correct mapping for the persistence.xml
+* Figure out how to force the addition of the servlet initalizer when there's already one in the project
